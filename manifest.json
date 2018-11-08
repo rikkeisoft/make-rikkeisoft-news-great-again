@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Make Rikkeisoft News Great Again",
+  "short_name": "Make Rikkeisoft News Great Again",
+  "description": "Replace annoyed smileys in Rikkeisoft News comment section",
+  "homepage_url": "https://ext.huynq.net/",
+  "version": "0.0.2",
+  "browser_action": {
+    "default_icon": "img/icon64.png",
+    "default_title": "Make Rikkeisoft Great Again"
+  },
+  "icons": {
+    "16": "img/icon32.png",
+    "48": "img/icon64.png",
+    "128": "img/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://rikkei.vn/*",
+        "*://*.rikkei.vn/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "*://rikkei.vn/*",
+    "*://*.rikkei.vn/*"
+  ]
+}
