@@ -40,7 +40,7 @@ const clean = () => {
       } else {
         const newSrc = getReplacingContent(node.innerText, TEXT_TYPE)
         if (newSrc) {
-          node.innerHTML = `<img src="${newSrc}" class="img-big">`
+          node.innerHTML = `<img src="${newSrc}" style="width: 80px;">`
         }
       }
     }
