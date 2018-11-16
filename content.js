@@ -1,7 +1,7 @@
 const IMAGE_TYPE = 0
 const TEXT_TYPE = 1
 const imgDict = [
-  ['https://rikkei.vn/asset_news/images/emoticons/toan.png', 'https://i.imgur.com/YGIkOiD.png'],
+  ['https://rikkei.vn/asset_news/images/emoticons/smile.gif', 'https://i.imgur.com/YGIkOiD.png'],
 ]
 const textDict = [
   [':thuy1:', 'https://i.imgur.com/DaUJ5UR.png'],
@@ -9,6 +9,8 @@ const textDict = [
   [':thuy3:', 'https://i.imgur.com/D3biQwr.png'],
   [':thuy4:', 'https://i.imgur.com/gNBKAvp.png'],
   [':thuy5:', 'https://i.imgur.com/Z9sNSrS.jpg'],
+  [':vu1:', 'https://i.imgur.com/O2FHsBc.jpg'],
+  [':sa1:', 'https://i.imgur.com/IrN2eyd.jpg'],
   ['<3', 'https://rikkei.vn/asset_news/images/emoticons/inlove.gif']
 ]
 const imgMap = new Map(imgDict)
