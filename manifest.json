@@ -2,9 +2,9 @@
   "manifest_version": 2,
   "name": "Make Rikkeisoft News Great Again",
   "short_name": "Make Rikkeisoft News Great Again",
-  "description": "Replace annoyed smileys in Rikkeisoft News comment section",
+  "description": "Use your favorite emoticons on Rikkeisoft News.",
   "homepage_url": "https://ext.huynq.net/",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "browser_action": {
     "default_icon": "img/icon64.png",
     "default_title": "Make Rikkeisoft Great Again"
@@ -26,7 +26,6 @@
     }
   ],
   "permissions": [
-    "activeTab",
     "*://rikkei.vn/*",
     "*://*.rikkei.vn/*"
   ]
