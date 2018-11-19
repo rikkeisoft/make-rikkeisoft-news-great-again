@@ -54,12 +54,18 @@ const decorate = () => {
 }
 
 const addToEmoList = () => {
-  document.querySelector('.emoji-button').click()
-  document.querySelector('body > div.emoji-menu').style.display = 'none'
-  const emoListElement = document.querySelector('body > div.emoji-menu').children[0]
-  for (const item of CUSTOM_TEXT_TO_EMO_DICT) {
-    const newNode = `<a href="javascript:void(0)" title="${item[0]}"><img src="${item[1]}" alt="${item[0]}"><span class="label">${item[0]}</span></a>`
-    emoListElement.innerHTML += newNode
+  const emojiButtonElement = document.querySelector('.emoji-button')
+  if (emojiButtonElement) {
+    emojiButtonElement.click()
+    const emojiMenuElement = document.querySelector('body > div.emoji-menu')
+    if (emojiMenuElement) {
+      emojiMenuElement.style.display = 'none'
+      const emoListElement = emojiMenuElement.children[0]
+      for (const item of CUSTOM_TEXT_TO_EMO_DICT) {
+        const newNode = `<a href="javascript:void(0)" title="${item[0]}"><img src="${item[1]}" alt="${item[0]}"><span class="label">${item[0]}</span></a>`
+        emoListElement.innerHTML += newNode
+      }
+    }
   }
 }
 
@@ -71,15 +77,49 @@ const callback = (mutationsList, observer) => {
   }
 }
 
-decorate()
-addToEmoList()
+const pathName = window.location.pathname
+const postPathRegex = /\/news\/post\/(.*)/gmi
+const isRoot = pathName === '/'
+const isPost = !!postPathRegex.exec(pathName)
+const preferNoSidebar = true
 
-const targetNode = document.getElementById('list-comment')
-const config = {
-  childList: true,
-  subtree: true,
-}
-const observer = new MutationObserver(callback)
-if (targetNode) {
-  observer.observe(targetNode, config)
+if (isRoot) {
+  if (preferNoSidebar) {
+    const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
+    const blogContentElement = document.querySelector('.blog-content')
+    if (sidebarElement) {
+      sidebarElement.remove()
+    }
+    if (blogContentElement) {
+      blogContentElement.className = 'blog-content'
+    }
+  }
+} else if (isPost) {  
+  if (preferNoSidebar) {
+    const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
+    const blogContentElement = document.querySelector('.blog-content')
+    if (sidebarElement) {
+      sidebarElement.remove()
+    }
+    if (blogContentElement) {
+      blogContentElement.className = 'blog-content'
+    }
+  }
+
+  const targetNode = document.getElementById('list-comment')
+  if (targetNode) {
+    decorate()
+    addToEmoList()
+
+    const config = {
+      childList: true,
+      subtree: true,
+    }
+    const observer = new MutationObserver(callback)
+    if (targetNode) {
+      observer.observe(targetNode, config)
+    }
+  }
+} else {
+  // TODO Other pages
 }
