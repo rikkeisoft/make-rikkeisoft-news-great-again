@@ -4,7 +4,7 @@
   "short_name": "Make Rikkeisoft News Great Again",
   "description": "Use your favorite emoticons on Rikkeisoft News.",
   "homepage_url": "https://ext.huynq.net/",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "browser_action": {
     "default_icon": "img/icon64.png",
     "default_title": "Make Rikkeisoft Great Again"
