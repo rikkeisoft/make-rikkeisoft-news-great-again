@@ -32,7 +32,7 @@ const CUSTOM_TEXT_TO_EMO_DICT = [
   [':meo14:', 'https://i.imgur.com/CW7W2hm.gif'],
   [':meo15:', 'https://i.imgur.com/Q0zdF5B.gif'],
   [':meo16:', 'https://i.imgur.com/3o7gfE6.gif'],
-  [':meo17:', 'https://i.imgur.com/3o7gfE6.gif'],
+  [':meo17:', 'https://i.imgur.com/FA7GTf7.gif'],
   [':meo18:', 'https://i.imgur.com/lzEZpGO.gif'],
   [':meo19:', 'https://i.imgur.com/NLkRB1J.gif'],
   [':meo20:', 'https://i.imgur.com/AvDeOSO.gif'],
@@ -84,7 +84,7 @@ const decorate = () => {
       } else {
         const newSrc = getReplacingContent(node.innerText, TEXT_TYPE)
         if (newSrc) {
-          node.innerHTML = `<img src="${newSrc}" style="width: 80px;">`
+          node.innerHTML = `<img src="${newSrc}" style="width: 100px;">`
         }
       }
     }
