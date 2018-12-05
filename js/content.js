@@ -51,12 +51,13 @@ const CUSTOM_TEXT_TO_EMO_DICT = [
   [':parrot:', 'https://i.imgur.com/0utmyvj.gif'],
   [':reverse_parrot:', 'https://i.imgur.com/kmw04qg.gif'],
   [':ship_parrot:', 'https://i.imgur.com/iijidYX.gif'],
-  [':stop:', 'https://i.imgur.com/U1b6GOk.gif'],
-  [':slow_parrot:', 'https://i.imgur.com/nkbPduW.gif'],
+  [':slow_parrot:', 'https://i.imgur.com/U1b6GOk.gif'],
+  [':stop:', 'https://i.imgur.com/nkbPduW.gif'],
 ]
 const TEXT_TO_EMO_DICT = [
   ['<3', 'https://rikkei.vn/asset_news/images/emoticons/inlove.gif']
 ]
+const MARKDOWN_CHEATSHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
 const imgMap = new Map(IMG_TO_EMO_DICT)
 const textMap = new Map([...CUSTOM_TEXT_TO_EMO_DICT, ...TEXT_TO_EMO_DICT])
 
@@ -82,7 +83,7 @@ const decorate = () => {
           node.lastElementChild.src = newSrc
         }
       } else {
-        const newSrc = getReplacingContent(node.innerText, TEXT_TYPE)
+        const newSrc = getReplacingContent(node.innerText.trim(), TEXT_TYPE)
         if (newSrc) {
           node.innerHTML = `<img src="${newSrc}" style="width: 100px;">`
         }
@@ -100,7 +101,12 @@ const addToEmoList = () => {
       emojiMenuElement.style.display = 'none'
       const emoListElement = emojiMenuElement.children[0]
       for (const item of CUSTOM_TEXT_TO_EMO_DICT) {
-        const newNode = `<a href="javascript:void(0)" title="${item[0]}"><img src="${item[1]}" alt="${item[0]}"><span class="label">${item[0]}</span></a>`
+        let injectedScript = `document.querySelector('div.emoji-wysiwyg-editor').innerText += ' ![${item[0]}](${item[1]})';`
+        injectedScript += `document.querySelector('textarea.emojis-wysiwyg').value += ' ![${item[0]}](${item[1]})'`
+        const newNode = `<div onclick="javascript:${injectedScript}" style="cursor: pointer;width: 30px;height: 30px;margin:0;padding: 5px;display: block;float: left">
+  <img src="${item[1]}" alt="${item[0]}">
+  <span class="label">${item[0]}</span>
+</div>`
         emoListElement.innerHTML += newNode
       }
     }
@@ -149,6 +155,10 @@ if (isRoot) {
   }
 
   const targetNode = document.getElementById('list-comment')
+  const commentHelpText = document.querySelector('.info-comment')
+  if (commentHelpText) {
+    commentHelpText.innerHTML = `support <a href="${MARKDOWN_CHEATSHEET}" target="_blank">markdown</a> syntax`
+  }
   if (targetNode) {
     decorate()
     addToEmoList()
