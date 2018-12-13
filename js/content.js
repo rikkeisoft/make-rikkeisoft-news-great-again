@@ -127,6 +127,12 @@ const isRoot = pathName === '/'
 const isPost = !!postPathRegex.exec(pathName)
 const preferNoSidebar = true
 
+const headerElement = document.querySelector('.main-header')
+if (headerElement && window.innerWidth > 1200) {
+  headerElement.style.position = 'fixed'
+  headerElement.style.width = '100%'
+}
+
 if (isRoot) {
   if (preferNoSidebar) {
     const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
