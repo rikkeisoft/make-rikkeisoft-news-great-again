@@ -1,0 +1,22 @@
+.thumbnail img.new-icon {
+  display: none !important;
+}
+.blog-sidebar-wrapper {
+  display: none !important;
+}
+.area-comment .img-big {
+  width: 80px !important;
+}
+.blog-content {
+  float: none !important;
+  width: 100% !important;
+}
+.top-up {
+  font-size: 36px;
+}
+@media (min-width: 1200px) {
+  .main-header {
+    position: fixed !important;
+    width: 100% !important;
+  }
+}

@@ -123,43 +123,9 @@ const callback = (mutationsList, observer) => {
 
 const pathName = window.location.pathname
 const postPathRegex = /\/news\/post\/(.*)/gmi
-const isRoot = pathName === '/'
 const isPost = !!postPathRegex.exec(pathName)
-const preferNoSidebar = true
 
-const headerElement = document.querySelector('.main-header')
-if (headerElement && window.innerWidth > 1200) {
-  headerElement.style.position = 'fixed'
-  headerElement.style.width = '100%'
-}
-
-if (isRoot) {
-  if (preferNoSidebar) {
-    const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
-    const blogContentElement = document.querySelector('.blog-content')
-    const ribbonElements = document.querySelectorAll('.thumbnail img.new-icon')
-    if (sidebarElement) {
-      sidebarElement.remove()
-    }
-    if (blogContentElement) {
-      blogContentElement.className = 'blog-content'
-    }
-    ribbonElements.forEach(element => {
-      element.style.display = 'none'
-    })
-  }
-} else if (isPost) {
-  if (preferNoSidebar) {
-    const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
-    const blogContentElement = document.querySelector('.blog-content')
-    if (sidebarElement) {
-      sidebarElement.remove()
-    }
-    if (blogContentElement) {
-      blogContentElement.className = 'blog-content'
-    }
-  }
-
+if (isPost) {
   const targetNode = document.getElementById('list-comment')
   const commentHelpText = document.querySelector('.info-comment')
   if (commentHelpText) {
@@ -178,6 +144,4 @@ if (isRoot) {
       observer.observe(targetNode, config)
     }
   }
-} else {
-  // TODO Other pages
 }
