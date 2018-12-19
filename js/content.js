@@ -60,6 +60,7 @@ const TEXT_TO_EMO_DICT = [
 const MARKDOWN_CHEATSHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
 const imgMap = new Map(IMG_TO_EMO_DICT)
 const textMap = new Map([...CUSTOM_TEXT_TO_EMO_DICT, ...TEXT_TO_EMO_DICT])
+let lastFocusedEditor = document.querySelector('.emoji-wysiwyg-editor')
 
 const getReplacingContent = (value, type = TEXT_TYPE) => {
   let content
@@ -101,9 +102,9 @@ const addToEmoList = () => {
       emojiMenuElement.style.display = 'none'
       const emoListElement = emojiMenuElement.children[0]
       for (const item of CUSTOM_TEXT_TO_EMO_DICT) {
-        let injectedScript = `document.querySelector('div.emoji-wysiwyg-editor').innerText += ' ![${item[0]}](${item[1]})';`
-        injectedScript += `document.querySelector('textarea.emojis-wysiwyg').value += ' ![${item[0]}](${item[1]})'`
-        const newNode = `<div onclick="javascript:${injectedScript}" style="cursor: pointer;width: 30px;height: 30px;margin:0;padding: 5px;display: block;float: left">
+        let injectedScript = `lastFocusedEditor.innerText += ' ![${item[0]}](${item[1]})';`
+        injectedScript += `lastFocusedEditor.value += ' ![${item[0]}](${item[1]})'`
+        const newNode = `<div onclick="javascript:${injectedScript};" class="custom-emoji">
   <img src="${item[1]}" alt="${item[0]}">
   <span class="label">${item[0]}</span>
 </div>`
@@ -114,6 +115,13 @@ const addToEmoList = () => {
 }
 
 const callback = (mutationsList, observer) => {
+  const emojiButtonElements = document.querySelectorAll('.emoji-button')
+  emojiButtonElements.forEach(element => {
+    element.addEventListener('click', () => {
+      lastFocusedEditor = element.previousSibling
+    })
+  })
+
   for (let mutation of mutationsList) {
     if (mutation.type == 'childList') {
       decorate()
@@ -126,7 +134,7 @@ const postPathRegex = /\/news\/post\/(.*)/gmi
 const isPost = !!postPathRegex.exec(pathName)
 
 if (isPost) {
-  const targetNode = document.getElementById('list-comment')
+  const targetNode = document.querySelector('.comment-container')
   const commentHelpText = document.querySelector('.info-comment')
   if (commentHelpText) {
     commentHelpText.innerHTML = `support <a href="${MARKDOWN_CHEATSHEET}" target="_blank">markdown</a> syntax`
