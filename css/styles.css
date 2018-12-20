@@ -23,6 +23,10 @@
   display: block;
   float: left;
 }
+.area-comment img {
+  width: fit-content !important;
+  padding: 10px !important;
+}
 @media (min-width: 1200px) {
   .main-header {
     position: fixed !important;
