@@ -53,6 +53,39 @@ const CUSTOM_TEXT_TO_EMO_DICT = [
   [':ship_parrot:', 'https://i.imgur.com/iijidYX.gif'],
   [':slow_parrot:', 'https://i.imgur.com/U1b6GOk.gif'],
   [':stop:', 'https://i.imgur.com/nkbPduW.gif'],
+  [':tonton1:', 'https://i.imgur.com/Gw30Caz.png'],
+  [':tonton2:', 'https://i.imgur.com/YVxWDap.png'],
+  [':tonton3:', 'https://i.imgur.com/3oJbyUr.png'],
+  [':tonton4:', 'https://i.imgur.com/EuluWM4.png'],
+  [':tonton5:', 'https://i.imgur.com/Jb2kOik.png'],
+  [':tonton6:', 'https://i.imgur.com/9hSA4HO.png'],
+  [':tonton7:', 'https://i.imgur.com/jb9ULK9.png'],
+  [':tonton8:', 'https://i.imgur.com/sM7GAs2.png'],
+  [':tonton9:', 'https://i.imgur.com/BToGVzH.png'],
+  [':tonton10:', 'https://i.imgur.com/BinW2JU.png'],
+  [':tonton11:', 'https://i.imgur.com/3jJbyEH.png'],
+  [':tonton12:', 'https://i.imgur.com/b0kFycl.png'],
+  [':tonton13:', 'https://i.imgur.com/5KC2LvF.png'],
+  [':tonton14:', 'https://i.imgur.com/l5CV0rI.png'],
+  [':tonton15:', 'https://i.imgur.com/nEojdo8.png'],
+  [':tonton16:', 'https://i.imgur.com/NA1fV6k.png'],
+  [':tonton17:', 'https://i.imgur.com/p4vHYos.png'],
+  [':tonton18:', 'https://i.imgur.com/TJCXmbK.png'],
+  [':tonton19:', 'https://i.imgur.com/jT8N8UO.png'],
+  [':tonton20:', 'https://i.imgur.com/b5hwk9f.png'],
+  [':tonton21:', 'https://i.imgur.com/NiBRKMW.png'],
+  [':tonton22:', 'https://i.imgur.com/Q40CQzG.png'],
+  [':tonton23:', 'https://i.imgur.com/Z0ffD4k.png'],
+  [':tonton24:', 'https://i.imgur.com/yUp7d5F.png'],
+  [':ahihi:', 'https://i.imgur.com/OF4RaGq.gif'],
+  [':boiroivl:', 'https://i.imgur.com/dGt3zIY.gif'],
+  [':dm:', 'https://i.imgur.com/CP0OQh1.gif'],
+  [':lasaota:', 'https://i.imgur.com/bSbxTlA.gif'],
+  [':cuu:', 'https://i.imgur.com/8mgQeXL.gif'],
+  [':clgt:', 'https://i.imgur.com/9hWK2q6.gif'],
+  [':deoquantam:', 'https://i.imgur.com/qnIwZZt.gif'],
+  [':hon:', 'https://i.imgur.com/3Vlyxp6.gif'],
+  [':khoc:', 'https://i.imgur.com/2jrUxNJ.gif'],
 ]
 const TEXT_TO_EMO_DICT = [
   ['<3', 'https://rikkei.vn/asset_news/images/emoticons/inlove.gif']
@@ -60,7 +93,7 @@ const TEXT_TO_EMO_DICT = [
 const MARKDOWN_CHEATSHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
 const imgMap = new Map(IMG_TO_EMO_DICT)
 const textMap = new Map([...CUSTOM_TEXT_TO_EMO_DICT, ...TEXT_TO_EMO_DICT])
-let lastFocusedEditor = document.querySelector('.emoji-wysiwyg-editor')
+let lastFocusedEditor = document.querySelector('div.emoji-wysiwyg-editor')
 
 const getReplacingContent = (value, type = TEXT_TYPE) => {
   let content
@@ -101,15 +134,18 @@ const addToEmoList = () => {
     if (emojiMenuElement) {
       emojiMenuElement.style.display = 'none'
       const emoListElement = emojiMenuElement.children[0]
+      const oldEmoticonList = emoListElement.innerHTML
+      emoListElement.innerHTML = ''
       for (const item of CUSTOM_TEXT_TO_EMO_DICT) {
-        let injectedScript = `lastFocusedEditor.innerText += ' ![${item[0]}](${item[1]})';`
-        injectedScript += `lastFocusedEditor.value += ' ![${item[0]}](${item[1]})'`
+        let injectedScript = `lastFocusedEditor.innerText += ' ![${item[0]} from https://bit.ly/rikkeisoft_news_ext](${item[1]})';`
+        injectedScript += `lastFocusedEditor.previousSibling.value += ' ![${item[0]} from https://bit.ly/rikkeisoft_news_ext](${item[1]})'`
         const newNode = `<div onclick="javascript:${injectedScript};" class="custom-emoji">
   <img src="${item[1]}" alt="${item[0]}">
   <span class="label">${item[0]}</span>
 </div>`
         emoListElement.innerHTML += newNode
       }
+      emoListElement.innerHTML += oldEmoticonList
     }
   }
 }

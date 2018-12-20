@@ -5,7 +5,7 @@
   display: none !important;
 }
 .area-comment .img-big {
-  width: 80px !important;
+  width: 150px !important;
 }
 .blog-content {
   float: none !important;
@@ -16,10 +16,10 @@
 }
 .custom-emoji {
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
   margin: 0;
-  padding: 5px;
+  padding: 2px;
   display: block;
   float: left;
 }
