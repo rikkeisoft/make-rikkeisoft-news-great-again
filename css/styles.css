@@ -4,9 +4,6 @@
 .blog-sidebar-wrapper {
   display: none !important;
 }
-.area-comment .img-big {
-  width: 150px !important;
-}
 .blog-content {
   float: none !important;
   width: 100% !important;
@@ -25,7 +22,14 @@
 }
 .area-comment img {
   width: fit-content !important;
+  max-width: 300px;
   padding: 10px !important;
+}
+.block-more {
+  display: none !important;
+}
+.span-comment {
+  height: unset !important;
 }
 @media (min-width: 1200px) {
   .main-header {

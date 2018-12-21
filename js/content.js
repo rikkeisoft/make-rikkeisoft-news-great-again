@@ -91,21 +91,59 @@ const TEXT_TO_EMO_DICT = [
   ['<3', 'https://rikkei.vn/asset_news/images/emoticons/inlove.gif']
 ]
 const MARKDOWN_CHEATSHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
-const imgMap = new Map(IMG_TO_EMO_DICT)
-const textMap = new Map([...CUSTOM_TEXT_TO_EMO_DICT, ...TEXT_TO_EMO_DICT])
+const CONTACT_SEARCH_API = 'https://rikkei.vn/contact/list'
+const CACHED_PROFILE = []
+const IMG_MAP = new Map(IMG_TO_EMO_DICT)
+const TEXT_MAP = new Map([...CUSTOM_TEXT_TO_EMO_DICT, ...TEXT_TO_EMO_DICT])
 let lastFocusedEditor = document.querySelector('div.emoji-wysiwyg-editor')
+let teamData = {}
+let roleData = {}
 
 const getReplacingContent = (value, type = TEXT_TYPE) => {
   let content
   if (type === TEXT_TYPE) {
-    content = textMap.get(value)
+    content = TEXT_MAP.get(value)
   } else {
-    content = imgMap.get(value)
+    content = IMG_MAP.get(value)
   }
   return content
 }
 
-const decorate = () => {
+const decorateMentions = () => {
+  const mentionedUrls = []
+  const commentUrls = document.querySelectorAll('.comment-container a')
+  const contactUrlRegex = /((http|https):\/\/rikkei\.vn\/contact\?s=(.*))/gmi
+
+  commentUrls.forEach(url => {
+    const matched = contactUrlRegex.exec(url)
+    if (url.classList.length === 0 && !!matched) {
+      fetch(`${CONTACT_SEARCH_API}?s=${matched[3]}&page=1`)
+        .then(response => response.json())
+        .then(json => {
+          if (Object.keys(teamData).length === 0) {
+            teamData = json.team
+          }
+          if (Object.keys(roleData).length === 0) {
+            roleData = json.role
+          }
+          if (json.data[0]) {
+            CACHED_PROFILE.push(json.data[0])
+          }
+          console.log(json.data[0])
+        })
+        .catch(error => {
+          console.error(error)
+        })
+      mentionedUrls.push(url)
+    }
+  })
+
+  mentionedUrls.forEach(url => {
+    url.classList = 'mentioned-link'
+  })
+}
+
+const decorateComments = () => {
   const elements = document.querySelectorAll('.span-comment')
 
   for (let i = 0; i < elements.length; i++) {
@@ -160,7 +198,7 @@ const callback = (mutationsList, observer) => {
 
   for (let mutation of mutationsList) {
     if (mutation.type == 'childList') {
-      decorate()
+      decorateComments()
     }
   }
 }
@@ -172,11 +210,14 @@ const isPost = !!postPathRegex.exec(pathName)
 if (isPost) {
   const targetNode = document.querySelector('.comment-container')
   const commentHelpText = document.querySelector('.info-comment')
+
   if (commentHelpText) {
     commentHelpText.innerHTML = `support <a href="${MARKDOWN_CHEATSHEET}" target="_blank">markdown</a> syntax`
   }
+
   if (targetNode) {
-    decorate()
+    decorateComments()
+    decorateMentions()
     addToEmoList()
 
     const config = {
