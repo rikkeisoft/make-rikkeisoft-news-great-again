@@ -20,7 +20,8 @@
 	padding: 10px!important;
 }
 .span-comment {
-	height: unset!important;
+  height: unset!important;
+  overflow: visible !important;
 }
 .popover__wrapper {
 	position: relative;
