@@ -135,7 +135,7 @@ const decorateMentions = () => {
           const person = json.data[0]
           if (person) {
             CACHED_PROFILE[person.email] = person
-            const userTeam = person.team.split('-').map(team => teamData[team].name).join(' - ')
+            const userTeam = person.team.split('-').map(team => teamData[team].name).join(' / ')
             const popoverContent = document.createElement('div')
             popoverContent.className = 'push popover__content'
             const profileHTML = `
@@ -147,7 +147,7 @@ const decorateMentions = () => {
       <h5><i class="fa fa-envelope-o color-mail"></i>${person.email}</h6>
       <h5><i class="fa fa-user-o"></i>${person.employee_code}</h6>
       <h5><i class="fa fa-birthday-cake color-birth"></i>${person.birthday}</h6>
-      <h5><i class="fa fa-users color-team"></i>${person.team}</h6>
+      <h5><i class="fa fa-users color-team"></i>${userTeam}</h6>
       <h5><i class="fa fa-phone color-phone"></i>${person.mobile_phone}</h6>
       <h5><i class="fa fa-skype color-skype"></i>${person.skype}</h6>
     </div>
