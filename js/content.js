@@ -92,7 +92,8 @@ const TEXT_TO_EMO_DICT = [
 ]
 const MARKDOWN_CHEATSHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
 const CONTACT_SEARCH_API = 'https://rikkei.vn/contact/list'
-const CACHED_PROFILE = []
+const DEFAULT_AVATAR = 'https://rikkei.vn/common/images/noavatar.png'
+const CACHED_PROFILE = {}
 const IMG_MAP = new Map(IMG_TO_EMO_DICT)
 const TEXT_MAP = new Map([...CUSTOM_TEXT_TO_EMO_DICT, ...TEXT_TO_EMO_DICT])
 let lastFocusedEditor = document.querySelector('div.emoji-wysiwyg-editor')
@@ -117,6 +118,11 @@ const decorateMentions = () => {
   commentUrls.forEach(url => {
     const matched = contactUrlRegex.exec(url)
     if (url.classList.length === 0 && !!matched) {
+      const wrapper = document.createElement('div')
+      wrapper.classList.add('popover__wrapper')
+      url.parentNode.insertBefore(wrapper, url)
+      wrapper.appendChild(url)
+
       fetch(`${CONTACT_SEARCH_API}?s=${matched[3]}&page=1`)
         .then(response => response.json())
         .then(json => {
@@ -126,10 +132,31 @@ const decorateMentions = () => {
           if (Object.keys(roleData).length === 0) {
             roleData = json.role
           }
-          if (json.data[0]) {
-            CACHED_PROFILE.push(json.data[0])
+          const person = json.data[0]
+          if (person) {
+            CACHED_PROFILE[person.email] = person
+            const userTeam = person.team.split('-').map(team => teamData[team].name).join(' - ')
+            const popoverContent = document.createElement('div')
+            popoverContent.className = 'push popover__content'
+            const profileHTML = `
+<div class="profile">
+  <div class="profile-photo"><img src="${person.avatar_url || DEFAULT_AVATAR}" /></div>
+  <div class="profile-content">
+    <div class="profile-text">
+      <h4>${person.name}</h4>
+      <h5><i class="fa fa-envelope-o color-mail"></i>${person.email}</h6>
+      <h5><i class="fa fa-user-o"></i>${person.employee_code}</h6>
+      <h5><i class="fa fa-birthday-cake color-birth"></i>${person.birthday}</h6>
+      <h5><i class="fa fa-users color-team"></i>${person.team}</h6>
+      <h5><i class="fa fa-phone color-phone"></i>${person.mobile_phone}</h6>
+      <h5><i class="fa fa-skype color-skype"></i>${person.skype}</h6>
+    </div>
+  </div>
+</div>
+`
+            popoverContent.innerHTML = profileHTML
+            wrapper.appendChild(popoverContent)
           }
-          console.log(json.data[0])
         })
         .catch(error => {
           console.error(error)
@@ -199,6 +226,7 @@ const callback = (mutationsList, observer) => {
   for (let mutation of mutationsList) {
     if (mutation.type == 'childList') {
       decorateComments()
+      decorateMentions()
     }
   }
 }

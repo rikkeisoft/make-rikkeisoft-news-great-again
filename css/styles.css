@@ -1,39 +1,83 @@
-.thumbnail img.new-icon {
-  display: none !important;
-}
-.blog-sidebar-wrapper {
-  display: none !important;
-}
 .blog-content {
-  float: none !important;
-  width: 100% !important;
+	float: none!important;
+	width: 100%!important;
 }
 .top-up {
-  font-size: 36px;
+	font-size: 36px;
 }
 .custom-emoji {
-  cursor: pointer;
-  width: 33px;
-  height: 33px;
-  margin: 0;
-  padding: 2px;
-  display: block;
-  float: left;
+	cursor: pointer;
+	width: 33px;
+	height: 33px;
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 2px;
 }
 .area-comment img {
-  width: fit-content !important;
-  max-width: 300px;
-  padding: 10px !important;
-}
-.block-more {
-  display: none !important;
+	width: fit-content!important;
+	max-width: 300px;
+	padding: 10px!important;
 }
 .span-comment {
-  height: unset !important;
+	height: unset!important;
 }
-@media (min-width: 1200px) {
-  .main-header {
-    position: fixed !important;
-    width: 100% !important;
-  }
+.popover__wrapper {
+	position: relative;
+	margin-top: 1.5rem;
+	display: inline-block;
+}
+.popover__content {
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
+	transform: translate(0, 10px);
+	background-color: #ff7675;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	width: auto;
+	min-width: 250px;
+	color: #fff;
+	top: 40px;
+	padding: 1.5rem;
+}
+.popover__wrapper:hover .popover__content {
+	z-index: 10;
+	opacity: 1;
+	visibility: visible;
+	transform: translate(0, -20px);
+	transition: all .5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+.popover__message {
+	text-align: center;
+}
+.profile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.profile-photo img {
+	width: 150px!important;
+	border-radius: 75px;
+}
+.profile-content {
+	min-height: unset!important;
+}
+.profile-text h4 {
+	font-weight: 700;
+	margin-bottom: 5px;
+}
+.profile-text i {
+	margin-right: 10px;
+}
+.thumbnail img.new-icon,
+.blog-sidebar-wrapper,
+.block-more {
+	display: none!important;
+}
+@media min-width 1200px {
+	.main-header {
+		position: fixed!important;
+		width: 100%!important;
+	}
 }
