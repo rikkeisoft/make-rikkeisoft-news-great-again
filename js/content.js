@@ -132,23 +132,23 @@ const decorateMentions = () => {
           if (Object.keys(roleData).length === 0) {
             roleData = json.role
           }
-          const person = json.data[0]
-          if (person) {
-            CACHED_PROFILE[person.email] = person
-            const userTeam = person.team.split('-').map(team => teamData[team].name).join(' / ')
-            const userAvatar = person.avatar_url ? person.avatar_url.replace('?sz=50', '') : DEFAULT_AVATAR
+          const profile = json.data[0]
+          if (profile) {
+            CACHED_PROFILE[profile.email] = profile
+            const userTeam = profile.team.split(';').map(team => team.split('-').map(team => teamData[team] && teamData[team].name).join(' / ')).join(' & ')
+            const userAvatar = profile.avatar_url ? profile.avatar_url.replace('?sz=50', '') : DEFAULT_AVATAR
             const popoverContent = document.createElement('div')
             popoverContent.className = 'push popover__content'
-            
+
             const profileHTML = `
 <div class="profile">
   <div class="profile-photo"><a href="${url.href}" target="_blank"><img src="${userAvatar}" /></a></div>
   <div class="profile-content">
     <div class="profile-text">
-      <h4>${person.name}</h4>
-      <h5><i class="fa fa-envelope-o color-mail"></i>${person.email}</h6>
-      <h5><i class="fa fa-user-o"></i>${person.employee_code}</h6>
-      <h5><i class="fa fa-birthday-cake color-birth"></i>${person.birthday}</h6>
+      <h4>${profile.name}</h4>
+      <h5><i class="fa fa-envelope-o color-mail"></i>${profile.email}</h6>
+      <h5><i class="fa fa-user-o"></i>${profile.employee_code}</h6>
+      <h5><i class="fa fa-birthday-cake color-birth"></i>${profile.birthday}</h6>
       <h5><i class="fa fa-users color-team"></i>${userTeam}</h6>
     </div>
   </div>
