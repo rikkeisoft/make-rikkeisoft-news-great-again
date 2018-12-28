@@ -93,12 +93,20 @@ const TEXT_TO_EMO_DICT = [
 const MARKDOWN_CHEATSHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
 const CONTACT_SEARCH_API = 'https://rikkei.vn/contact/list'
 const DEFAULT_AVATAR = 'https://rikkei.vn/common/images/noavatar.png'
+const DEFAULT_EXT_CONFIG = {
+  // useFixedHeader: true,
+  // shouldHideNewRibbon: true,
+  // shouldHideSidebar: true,
+  useGallery: true,
+  useHoverCard: true,
+}
 const CACHED_PROFILE = {}
 const IMG_MAP = new Map(IMG_TO_EMO_DICT)
 const TEXT_MAP = new Map([...CUSTOM_TEXT_TO_EMO_DICT, ...TEXT_TO_EMO_DICT])
 let lastFocusedEditor = document.querySelector('div.emoji-wysiwyg-editor')
 let teamData = {}
 let roleData = {}
+let chromeExtOptions = DEFAULT_EXT_CONFIG
 
 const getReplacingContent = (value, type = TEXT_TYPE) => {
   let content
@@ -226,7 +234,9 @@ const callback = (mutationsList, observer) => {
   for (let mutation of mutationsList) {
     if (mutation.type == 'childList') {
       decorateComments()
-      decorateMentions()
+      if (chromeExtOptions.useHoverCard) {
+        decorateMentions()
+      }
     }
   }
 }
@@ -235,26 +245,37 @@ const pathName = window.location.pathname
 const postPathRegex = /\/news\/post\/(.*)/gmi
 const isPost = !!postPathRegex.exec(pathName)
 
-if (isPost) {
-  const targetNode = document.querySelector('.comment-container')
-  const commentHelpText = document.querySelector('.info-comment')
+chrome.storage.sync.get(DEFAULT_EXT_CONFIG, opts => {
+  chromeExtOptions = Object.assign({}, chromeExtOptions, opts)
 
-  if (commentHelpText) {
-    commentHelpText.innerHTML = `support <a href="${MARKDOWN_CHEATSHEET}" target="_blank">markdown</a> syntax`
-  }
+  if (isPost) {
+    const postContent = document.querySelector('.post-detail')
+    const commentHelpText = document.querySelector('.info-comment')
+    const targetNode = document.querySelector('.comment-container')
 
-  if (targetNode) {
-    decorateComments()
-    decorateMentions()
-    addToEmoList()
-
-    const config = {
-      childList: true,
-      subtree: true,
+    if (chromeExtOptions.useGallery) {
+      const gallery = new Viewer(postContent)
     }
-    const observer = new MutationObserver(callback)
+
+    if (commentHelpText) {
+      commentHelpText.innerHTML = `support <a href="${MARKDOWN_CHEATSHEET}" target="_blank">markdown</a> syntax`
+    }
+
     if (targetNode) {
-      observer.observe(targetNode, config)
+      decorateComments()
+      if (chromeExtOptions.useHoverCard) {
+        decorateMentions()
+      }
+      addToEmoList()
+
+      const config = {
+        childList: true,
+        subtree: true,
+      }
+      const observer = new MutationObserver(callback)
+      if (targetNode) {
+        observer.observe(targetNode, config)
+      }
     }
   }
-}
+})
