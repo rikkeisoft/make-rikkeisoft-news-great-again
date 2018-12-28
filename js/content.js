@@ -1,3 +1,5 @@
+// KANAHEI: https://api.imgur.com/3/album/f79MjOU/images
+
 const IMAGE_TYPE = 0
 const TEXT_TYPE = 1
 const IMG_TO_EMO_DICT = [
@@ -87,6 +89,9 @@ const CUSTOM_TEXT_TO_EMO_DICT = [
   [':hon:', 'https://i.imgur.com/3Vlyxp6.gif'],
   [':khoc:', 'https://i.imgur.com/2jrUxNJ.gif'],
 ]
+const STICKER_PACK = {
+  kanahei: ["https://i.imgur.com/JBrp8PS.png", "https://i.imgur.com/077Qyd9.png", "https://i.imgur.com/7OvkgR0.png", "https://i.imgur.com/yfHY3hR.png", "https://i.imgur.com/19cFZMF.png", "https://i.imgur.com/LmJA0gD.png", "https://i.imgur.com/69EKuWd.png", "https://i.imgur.com/8qrn11x.png", "https://i.imgur.com/g2DeRsO.png", "https://i.imgur.com/WOF9avs.png", "https://i.imgur.com/0ouFJOO.png", "https://i.imgur.com/rTBo6WN.png", "https://i.imgur.com/PQIbM37.png", "https://i.imgur.com/T7JxCEd.png", "https://i.imgur.com/B8VajVZ.png", "https://i.imgur.com/MoRO2tk.png", "https://i.imgur.com/HmXwlRU.png", "https://i.imgur.com/IruoGFh.png", "https://i.imgur.com/udRFc65.png", "https://i.imgur.com/cgUs61u.png", "https://i.imgur.com/aM7SQ85.png", "https://i.imgur.com/3GWMej7.png", "https://i.imgur.com/hlWnid0.png", "https://i.imgur.com/dMcyKtz.png", "https://i.imgur.com/mDBjnDD.png", "https://i.imgur.com/aibURzD.png", "https://i.imgur.com/EjAWZ3e.png", "https://i.imgur.com/pX1m05O.png", "https://i.imgur.com/FSETmSG.png", "https://i.imgur.com/dcM70Qv.png", "https://i.imgur.com/kINwOw4.png", "https://i.imgur.com/294XYuB.png", "https://i.imgur.com/wCVNyyP.png", "https://i.imgur.com/3xduvVk.png", "https://i.imgur.com/SFMFpll.png", "https://i.imgur.com/xq8GMxG.png", "https://i.imgur.com/96Q3ht8.png", "https://i.imgur.com/2mqT8cW.png", "https://i.imgur.com/XBIj50q.png", "https://i.imgur.com/1VQ7ZXt.png", "https://i.imgur.com/ylPTWpm.png", "https://i.imgur.com/XPLEyaw.png", "https://i.imgur.com/4Mga1j7.png", "https://i.imgur.com/eahocey.png", "https://i.imgur.com/xtGOZKI.png", "https://i.imgur.com/qjBcrLN.png", "https://i.imgur.com/fO0EefX.png"]
+}
 const TEXT_TO_EMO_DICT = [
   ['<3', 'https://rikkei.vn/asset_news/images/emoticons/inlove.gif']
 ]
@@ -205,11 +210,15 @@ const addToEmoList = () => {
     emojiButtonElement.click()
     const emojiMenuElement = document.querySelector('body > div.emoji-menu')
     if (emojiMenuElement) {
+      const newStickers = Object.keys(STICKER_PACK).map(item => STICKER_PACK[item].map((sticker, index) => [`${item}${index}`, sticker])).flat()
+      const customStickers = [...CUSTOM_TEXT_TO_EMO_DICT, ...newStickers]
+
       emojiMenuElement.style.display = 'none'
       const emoListElement = emojiMenuElement.children[0]
       const oldEmoticonList = emoListElement.innerHTML
       emoListElement.innerHTML = ''
-      for (const item of CUSTOM_TEXT_TO_EMO_DICT) {
+
+      for (const item of customStickers) {
         let injectedScript = `lastFocusedEditor.innerText += ' ![${item[0]} from https://bit.ly/rikkeisoft_news_ext](${item[1]})';`
         injectedScript += `lastFocusedEditor.previousSibling.value += ' ![${item[0]} from https://bit.ly/rikkeisoft_news_ext](${item[1]})'`
         const newNode = `<div onclick="javascript:${injectedScript};" class="custom-emoji">
