@@ -112,6 +112,7 @@ let lastFocusedEditor = document.querySelector('div.emoji-wysiwyg-editor')
 let teamData = {}
 let roleData = {}
 let chromeExtOptions = DEFAULT_EXT_CONFIG
+let stickerEventValues = {}
 
 const getReplacingContent = (value, type = TEXT_TYPE) => {
   let content
@@ -218,16 +219,32 @@ const addToEmoList = () => {
       const oldEmoticonList = emoListElement.innerHTML
       emoListElement.innerHTML = ''
 
-      for (const item of customStickers) {
-        let injectedScript = `lastFocusedEditor.innerText += ' ![${item[0]} from https://bit.ly/rikkeisoft_news_ext](${item[1]})';`
-        injectedScript += `lastFocusedEditor.previousSibling.value += ' ![${item[0]} from https://bit.ly/rikkeisoft_news_ext](${item[1]})'`
-        const newNode = `<div onclick="javascript:${injectedScript};" class="custom-emoji">
+      let i = 0
+      for (const index in customStickers) {
+        const item = customStickers[index]
+        stickerEventValues[`hnq-custom-emo-${index}`] = {
+          text: ` ![${item[0]} from https://bit.ly/rikkeisoft_news_ext](${item[1]})`,
+          value: ` ![${item[0]} from https://bit.ly/rikkeisoft_news_ext](${item[1]})`
+        }
+        const newNode = `<div class="custom-emoji" data-emo="hnq-custom-emo-${index}">
   <img src="${item[1]}" alt="${item[0]}">
   <span class="label">${item[0]}</span>
 </div>`
         emoListElement.innerHTML += newNode
       }
       emoListElement.innerHTML += oldEmoticonList
+    }
+  }
+
+  const eventValueLength = Object.keys(stickerEventValues).length
+  for (let i = 0; i < eventValueLength; i++) {
+    const dataEmo = `[data-emo="hnq-custom-emo-${i}"]`
+    const element = document.querySelector(dataEmo)
+    if (element) {
+      element.addEventListener('click', function (event) {
+        lastFocusedEditor.innerText += stickerEventValues[`hnq-custom-emo-${i}`].text
+        lastFocusedEditor.previousSibling.value += stickerEventValues[`hnq-custom-emo-${i}`].value
+      })
     }
   }
 }
