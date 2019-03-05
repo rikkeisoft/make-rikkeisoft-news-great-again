@@ -1,23 +1,35 @@
 .blog-content {
-  float: none!important;
-  width: 100%!important;
+  float: none !important;
+  width: 100% !important;
+}
+@media (min-width: 992px) {
+  .force-full-width {
+    float: left !important;
+    width: 75% !important;
+  }
 }
 .top-up {
   font-size: 36px;
 }
 .custom-emoji {
   cursor: pointer;
-  width: 33px;
-  height: 33px;
+  width: 70px;
+  height: 70px;
   display: block;
   float: left;
   margin: 0;
   padding: 2px;
 }
+.custom-emoji img {
+  width: 65px !important;
+  height: 65px !important;
+  vertical-align: middle !important;
+  border: 0 none !important;
+}
 .area-comment img {
-  width: fit-content!important;
+  width: fit-content !important;
   max-width: 300px;
-  padding: 10px!important;
+  padding: 10px !important;
 }
 a.emoji-button img {
   width: 20px !important;
@@ -62,7 +74,7 @@ a.emoji-button img {
   align-items: center;
 }
 .profile-photo img {
-  width: 150px!important;
+  width: 150px !important;
   border-radius: 75px;
 }
 .profile-content {
@@ -78,11 +90,21 @@ a.emoji-button img {
 .thumbnail img.new-icon,
 .blog-sidebar-wrapper,
 .block-more {
-  display: none!important;
+  display: none !important;
+}
+@media (min-width: 992px) {
+  .force-show {
+    display: block !important;
+  }
+}
+@media (max-width: 991px) {
+  .toggle-sidebar {
+    display: none !important;
+  }
 }
 @media min-width 1200px {
   .main-header {
-    position: fixed!important;
-    width: 100%!important;
+    position: fixed !important;
+    width: 100% !important;
   }
 }

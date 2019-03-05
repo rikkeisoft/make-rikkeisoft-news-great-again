@@ -39,22 +39,22 @@ const CUSTOM_TEXT_TO_EMO_DICT = [
   [':meo19:', 'https://i.imgur.com/NLkRB1J.gif'],
   [':meo20:', 'https://i.imgur.com/AvDeOSO.gif'],
   [':meo21:', 'https://i.imgur.com/pxGZ5B8.gif'],
-  [':bored_parrot:', 'https://i.imgur.com/U4hWizq.gif'],
-  [':bow:', 'https://i.imgur.com/JwnKJsc.gif'],
-  [':coffee_parrot:', 'https://i.imgur.com/5EaIwM9.gif'],
-  [':doge_bread:', 'https://i.imgur.com/eDetip4.jpg'],
-  [':doge:', 'https://i.imgur.com/39eQNsx.jpg'],
-  [':slide_parrot:', 'https://i.imgur.com/JFg0DsX.gif'],
-  [':fast_parrot:', 'https://i.imgur.com/aN0qzVH.gif'],
-  [':grumpy:', 'https://i.imgur.com/eOfyX7n.png'],
-  [':mooning:', 'https://i.imgur.com/MB28a06.png'],
-  [':nyan_cat:', 'https://i.imgur.com/XXNirx9.png'],
-  [':panda:', 'https://i.imgur.com/Dzy9Pqb.gif'],
-  [':parrot:', 'https://i.imgur.com/0utmyvj.gif'],
-  [':reverse_parrot:', 'https://i.imgur.com/kmw04qg.gif'],
-  [':ship_parrot:', 'https://i.imgur.com/iijidYX.gif'],
-  [':slow_parrot:', 'https://i.imgur.com/U1b6GOk.gif'],
-  [':stop:', 'https://i.imgur.com/nkbPduW.gif'],
+  // [':bored_parrot:', 'https://i.imgur.com/U4hWizq.gif'],
+  // [':bow:', 'https://i.imgur.com/JwnKJsc.gif'],
+  // [':coffee_parrot:', 'https://i.imgur.com/5EaIwM9.gif'],
+  // [':doge_bread:', 'https://i.imgur.com/eDetip4.jpg'],
+  // [':doge:', 'https://i.imgur.com/39eQNsx.jpg'],
+  // [':slide_parrot:', 'https://i.imgur.com/JFg0DsX.gif'],
+  // [':fast_parrot:', 'https://i.imgur.com/aN0qzVH.gif'],
+  // [':grumpy:', 'https://i.imgur.com/eOfyX7n.png'],
+  // [':mooning:', 'https://i.imgur.com/MB28a06.png'],
+  // [':nyan_cat:', 'https://i.imgur.com/XXNirx9.png'],
+  // [':panda:', 'https://i.imgur.com/Dzy9Pqb.gif'],
+  // [':parrot:', 'https://i.imgur.com/0utmyvj.gif'],
+  // [':reverse_parrot:', 'https://i.imgur.com/kmw04qg.gif'],
+  // [':ship_parrot:', 'https://i.imgur.com/iijidYX.gif'],
+  // [':slow_parrot:', 'https://i.imgur.com/U1b6GOk.gif'],
+  // [':stop:', 'https://i.imgur.com/nkbPduW.gif'],
   [':tonton1:', 'https://i.imgur.com/Gw30Caz.png'],
   [':tonton2:', 'https://i.imgur.com/YVxWDap.png'],
   [':tonton3:', 'https://i.imgur.com/3oJbyUr.png'],
@@ -90,6 +90,8 @@ const CUSTOM_TEXT_TO_EMO_DICT = [
   [':khoc:', 'https://i.imgur.com/2jrUxNJ.gif'],
 ]
 const STICKER_PACK = {
+  // meo: ["https://i.imgur.com/1532bE4.png","https://i.imgur.com/R3wnAHR.png","https://i.imgur.com/FQ8EIU3.png","https://i.imgur.com/VzfTLSE.png","https://i.imgur.com/3xb8CjY.png","https://i.imgur.com/NkTGVVx.png","https://i.imgur.com/sf4RQrj.png","https://i.imgur.com/102Kc54.png","https://i.imgur.com/DDxG45u.png","https://i.imgur.com/wqw6xeb.png","https://i.imgur.com/CozNnNB.png","https://i.imgur.com/tdnCpsj.png","https://i.imgur.com/PdcgoeC.png","https://i.imgur.com/3WGA5Bp.png","https://i.imgur.com/qDZs5UL.png","https://i.imgur.com/7RIhVK6.png","https://i.imgur.com/e0kHDoI.png","https://i.imgur.com/EU1ZCgu.png","https://i.imgur.com/qw3BZ1p.png","https://i.imgur.com/OtlGRqq.png","https://i.imgur.com/6Slsnl6.png","https://i.imgur.com/FcPENzH.png","https://i.imgur.com/lAb5mDN.png","https://i.imgur.com/l1vOCVU.png","https://i.imgur.com/xxyYCIK.png","https://i.imgur.com/jRPRbgx.png","https://i.imgur.com/W147qey.png","https://i.imgur.com/lVmCB00.png","https://i.imgur.com/piE0Az1.png","https://i.imgur.com/0omKvZ2.png","https://i.imgur.com/NWEUaqS.png","https://i.imgur.com/9PbOYY6.png","https://i.imgur.com/2rjx2Z2.png","https://i.imgur.com/ONoWTjn.png","https://i.imgur.com/U1ohXnb.png","https://i.imgur.com/3udBrbM.png","https://i.imgur.com/wbeIEE5.png","https://i.imgur.com/WvfsUsC.png","https://i.imgur.com/UZjeq1C.png","https://i.imgur.com/4J3NpUW.png","https://i.imgur.com/WmHUhfk.png","https://i.imgur.com/AIR0THo.png","https://i.imgur.com/acqENIO.png","https://i.imgur.com/uG2HGTM.png","https://i.imgur.com/yqrDXX3.png","https://i.imgur.com/62LlfkX.png","https://i.imgur.com/8ooREgC.png","https://i.imgur.com/nIdBEPl.png","https://i.imgur.com/SWmTb00.png","https://i.imgur.com/M2r400z.png","https://i.imgur.com/GAMvUmN.png","https://i.imgur.com/mvPsYRV.png","https://i.imgur.com/5TLYcPb.png","https://i.imgur.com/2mqRK47.png","https://i.imgur.com/5m0gP2T.png","https://i.imgur.com/boGP0cp.png","https://i.imgur.com/yIEbjWt.png","https://i.imgur.com/IM9M6FJ.png","https://i.imgur.com/WcaOw5S.png","https://i.imgur.com/Kww4MM4.png","https://i.imgur.com/GSvVMss.png","https://i.imgur.com/Gw6SGk8.png","https://i.imgur.com/deOeykv.png","https://i.imgur.com/coE4vBS.png","https://i.imgur.com/QoHvnKB.png","https://i.imgur.com/r2dsS8i.png","https://i.imgur.com/HpkWuWQ.png","https://i.imgur.com/GEKbDVv.png","https://i.imgur.com/JjQRELi.png","https://i.imgur.com/fPfNZJ1.png","https://i.imgur.com/5nBxgzh.png","https://i.imgur.com/lT2smFP.png","https://i.imgur.com/65S70LJ.png","https://i.imgur.com/IjJuO0K.png","https://i.imgur.com/LaGM1ze.png","https://i.imgur.com/3MLeNEj.png","https://i.imgur.com/nAenrll.png","https://i.imgur.com/pc2vIuJ.png","https://i.imgur.com/skXQn94.png","https://i.imgur.com/Qykxq1N.png","https://i.imgur.com/ns6qU1X.gif","https://i.imgur.com/zoa297K.gif","https://i.imgur.com/T7pHgG6.gif","https://i.imgur.com/utTbFPd.gif","https://i.imgur.com/kupB5LD.gif","https://i.imgur.com/Gylc5cN.gif","https://i.imgur.com/cxO2glu.gif","https://i.imgur.com/iGFlw0x.gif","https://i.imgur.com/4vrT96P.gif","https://i.imgur.com/VjcAWgB.gif","https://i.imgur.com/faeX3oa.gif","https://i.imgur.com/LbQBPfx.gif","https://i.imgur.com/aDUja3J.gif","https://i.imgur.com/Kq1Gc0O.gif","https://i.imgur.com/fcNCQaj.gif","https://i.imgur.com/wRpLtxM.gif","https://i.imgur.com/wEPSvWb.gif","https://i.imgur.com/TtcitF6.gif","https://i.imgur.com/glECMc7.gif","https://i.imgur.com/PeTgKOK.gif","https://i.imgur.com/nFcRgUI.gif","https://i.imgur.com/NbuQZ0r.gif","https://i.imgur.com/skDgRgx.gif","https://i.imgur.com/D42K1j6.gif","https://i.imgur.com/CQ74c3x.gif","https://i.imgur.com/wfJlEOH.gif","https://i.imgur.com/5wgCcaI.gif","https://i.imgur.com/tN9p0ps.gif","https://i.imgur.com/geP97YV.gif","https://i.imgur.com/jZ85tT3.gif","https://i.imgur.com/XMcxnFc.gif","https://i.imgur.com/HNcskIK.gif","https://i.imgur.com/xrSV3qX.gif","https://i.imgur.com/ycXTIxZ.gif","https://i.imgur.com/kfhb8et.gif","https://i.imgur.com/eI8h5FK.gif","https://i.imgur.com/HMnyJyz.gif","https://i.imgur.com/Uo167Dn.gif","https://i.imgur.com/5QJEiZg.gif","https://i.imgur.com/bSjXO5Y.gif","https://i.imgur.com/CGd1vO9.gif","https://i.imgur.com/4FGhUuk.gif","https://i.imgur.com/ZPgUqKg.gif","https://i.imgur.com/nMqk8XS.gif","https://i.imgur.com/ej4syjH.gif","https://i.imgur.com/GLQwEBF.gif","https://i.imgur.com/0iYJFjj.gif"],
+  ronglon: ["https://i.imgur.com/F1YBGPR.jpg","https://i.imgur.com/xEqcqKA.jpg","https://i.imgur.com/DO2xw3f.jpg","https://i.imgur.com/IXUjP9Y.jpg","https://i.imgur.com/8zDrY7P.jpg","https://i.imgur.com/Z3emHnB.jpg","https://i.imgur.com/dogiHMg.jpg","https://i.imgur.com/guiNbtl.jpg","https://i.imgur.com/yBdhQnn.jpg","https://i.imgur.com/NR0KCyd.jpg","https://i.imgur.com/4ONNNUY.jpg","https://i.imgur.com/V3kZALa.jpg","https://i.imgur.com/dC4y4qp.jpg","https://i.imgur.com/cL1BcVS.jpg","https://i.imgur.com/oCcMVIj.jpg","https://i.imgur.com/Qds2aif.jpg","https://i.imgur.com/fJmIyyw.jpg","https://i.imgur.com/4NnWqM4.jpg","https://i.imgur.com/ggwDfD2.jpg","https://i.imgur.com/JqcFeYD.jpg","https://i.imgur.com/jN8xwlK.jpg","https://i.imgur.com/yP74UeE.jpg","https://i.imgur.com/lCoESSi.jpg","https://i.imgur.com/32OKG9G.jpg","https://i.imgur.com/Pa51Xt2.jpg","https://i.imgur.com/2IQ5Hn8.jpg","https://i.imgur.com/a6mmkXc.jpg","https://i.imgur.com/Qir4WuW.jpg","https://i.imgur.com/cbJCvUc.jpg","https://i.imgur.com/J8tVNBE.jpg","https://i.imgur.com/7TqWA7Q.jpg","https://i.imgur.com/8ZiphTi.jpg","https://i.imgur.com/7xTQDSu.jpg","https://i.imgur.com/vbuKEBP.jpg","https://i.imgur.com/VDAkSpK.jpg","https://i.imgur.com/Lmf2CVH.jpg","https://i.imgur.com/xRTwNWa.png","https://i.imgur.com/hUK7Wy5.png","https://i.imgur.com/XIkvlZo.png","https://i.imgur.com/lm12gbF.png","https://i.imgur.com/GEwL8ed.png","https://i.imgur.com/OXtCEiC.png","https://i.imgur.com/2pCzRq8.png","https://i.imgur.com/9LsV9bE.png","https://i.imgur.com/2Okamf5.jpg","https://i.imgur.com/tiGhQDY.jpg","https://i.imgur.com/0Y2Osei.jpg","https://i.imgur.com/1LCx9Yi.jpg","https://i.imgur.com/4fhoTZe.jpg","https://i.imgur.com/wKaobLb.jpg","https://i.imgur.com/iRub6mO.jpg","https://i.imgur.com/WhuZ9I5.png","https://i.imgur.com/X8shzlw.jpg","https://i.imgur.com/MIOP59f.png","https://i.imgur.com/GSC3E94.png","https://i.imgur.com/hWcFr4A.png","https://i.imgur.com/lQZvAv7.png"],
   kanahei: ["https://i.imgur.com/JBrp8PS.png", "https://i.imgur.com/077Qyd9.png", "https://i.imgur.com/7OvkgR0.png", "https://i.imgur.com/yfHY3hR.png", "https://i.imgur.com/19cFZMF.png", "https://i.imgur.com/LmJA0gD.png", "https://i.imgur.com/69EKuWd.png", "https://i.imgur.com/8qrn11x.png", "https://i.imgur.com/g2DeRsO.png", "https://i.imgur.com/WOF9avs.png", "https://i.imgur.com/0ouFJOO.png", "https://i.imgur.com/rTBo6WN.png", "https://i.imgur.com/PQIbM37.png", "https://i.imgur.com/T7JxCEd.png", "https://i.imgur.com/B8VajVZ.png", "https://i.imgur.com/MoRO2tk.png", "https://i.imgur.com/HmXwlRU.png", "https://i.imgur.com/IruoGFh.png", "https://i.imgur.com/udRFc65.png", "https://i.imgur.com/cgUs61u.png", "https://i.imgur.com/aM7SQ85.png", "https://i.imgur.com/3GWMej7.png", "https://i.imgur.com/hlWnid0.png", "https://i.imgur.com/dMcyKtz.png", "https://i.imgur.com/mDBjnDD.png", "https://i.imgur.com/aibURzD.png", "https://i.imgur.com/EjAWZ3e.png", "https://i.imgur.com/pX1m05O.png", "https://i.imgur.com/FSETmSG.png", "https://i.imgur.com/dcM70Qv.png", "https://i.imgur.com/kINwOw4.png", "https://i.imgur.com/294XYuB.png", "https://i.imgur.com/wCVNyyP.png", "https://i.imgur.com/3xduvVk.png", "https://i.imgur.com/SFMFpll.png", "https://i.imgur.com/xq8GMxG.png", "https://i.imgur.com/96Q3ht8.png", "https://i.imgur.com/2mqT8cW.png", "https://i.imgur.com/XBIj50q.png", "https://i.imgur.com/1VQ7ZXt.png", "https://i.imgur.com/ylPTWpm.png", "https://i.imgur.com/XPLEyaw.png", "https://i.imgur.com/4Mga1j7.png", "https://i.imgur.com/eahocey.png", "https://i.imgur.com/xtGOZKI.png", "https://i.imgur.com/qjBcrLN.png", "https://i.imgur.com/fO0EefX.png"],
   lon: ["https://i.imgur.com/O3bnJRa.png", "https://i.imgur.com/QzV0lqG.png", "https://i.imgur.com/g2kwmG2.png", "https://i.imgur.com/scgrm6L.png", "https://i.imgur.com/VKLE35p.png", "https://i.imgur.com/x2Oojez.png", "https://i.imgur.com/vifxGU8.png", "https://i.imgur.com/BVMnaAE.png", "https://i.imgur.com/rNe9SIy.png", "https://i.imgur.com/nSCvfd1.png", "https://i.imgur.com/sy4IDfE.png", "https://i.imgur.com/rSdPfOY.png"]
 }
@@ -114,6 +116,7 @@ let teamData = {}
 let roleData = {}
 let chromeExtOptions = DEFAULT_EXT_CONFIG
 let stickerEventValues = {}
+let sidebarOpened = false
 
 const getReplacingContent = (value, type = TEXT_TYPE) => {
   let content
@@ -274,6 +277,27 @@ const isPost = !!postPathRegex.exec(pathName)
 
 chrome.storage.sync.get(DEFAULT_EXT_CONFIG, opts => {
   chromeExtOptions = Object.assign({}, chromeExtOptions, opts)
+
+  const sidebarToggle = document.createElement('div')
+  sidebarToggle.innerHTML = `
+  <a href="#" class="toggle-sidebar" style="top:50%;font-size:36px;position:fixed;bottom:20px;right:20px;color:#bf1d1e">
+	<i class="fa fa-bars"></i>
+</a>
+`
+  document.body.append(sidebarToggle)
+
+  sidebarToggle.addEventListener('click', () => {
+    const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
+    const mainContent = document.querySelector('.blog-content')
+    if (sidebarOpened) {
+      sidebarElement.classList.remove('force-show')
+      mainContent.classList.remove('force-full-width')
+    } else {
+      sidebarElement.classList.add('force-show')
+      mainContent.classList.add('force-full-width')
+    }
+    sidebarOpened = !sidebarOpened
+  })
 
   if (isPost) {
     const postContent = document.querySelector('.post-detail')

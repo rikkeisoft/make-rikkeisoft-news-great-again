@@ -1,4 +1,4 @@
-# Make Rikkeisoft News great again.
+# Make Rikkeisoft News great again
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/hapbddhkinmicngpnkhmelghidjikcab.svg)](https://chrome.google.com/webstore/detail/make-rikkeisoft-news-grea/hapbddhkinmicngpnkhmelghidjikcab?hl=en-US)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating-count/hapbddhkinmicngpnkhmelghidjikcab.svg)](https://chrome.google.com/webstore/detail/make-rikkeisoft-news-grea/hapbddhkinmicngpnkhmelghidjikcab?hl=en-US)
@@ -13,7 +13,6 @@
 
 LICENSE   
 WTFPL - http://www.wtfpl.net
-
 
 Please try my Chrome Extensions:   
 - [Silence is Golden](https://chrome.google.com/webstore/detail/silence-is-golden-for-fb/bmjmoilfkkkppjjhljmmbcpefpaojfng)
