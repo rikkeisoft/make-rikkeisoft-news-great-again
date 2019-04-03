@@ -272,7 +272,7 @@ chrome.storage.sync.get(DEFAULT_EXT_CONFIG, opts => {
     const sidebarToggle = document.createElement('div')
     sidebarToggle.innerHTML = `
   <a href="#" class="toggle-sidebar" style="top:50%;font-size:36px;position:fixed;bottom:20px;right:20px;color:#bf1d1e">
-	<i class="fa fa-bars"></i>
+	<i class="fa fa-arrows-h"></i>
 </a>
 `
     document.body.append(sidebarToggle)
