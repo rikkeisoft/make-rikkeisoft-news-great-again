@@ -197,6 +197,17 @@ const decorateComments = () => {
   }
 }
 
+const blockBadWords = () => {
+  const elements = document.querySelectorAll('.box-music')
+
+  for (let i = 0; i < elements.length; i++) {
+    const node = elements[i]
+    const regex = /(địt|Địt|đụ|Đụ|lồn|Lồn|buồi|Buồi|cặc|Cặc|dái|Dái)/gmiu
+    const nodeHTML = node.innerHTML
+    node.innerHTML = nodeHTML.replace(/(địt|Địt|đụ|Đụ|lồn|Lồn|buồi|Buồi|cặc|Cặc|dái|Dái|con mẹ|con Mẹ|Con Mẹ|đm|ĐM)/gmiu, 'ahihi')
+  }
+}
+
 const addToEmoList = () => {
   const emojiButtonElement = document.querySelector('.emoji-button')
   if (emojiButtonElement) {
@@ -264,6 +275,7 @@ const postPathRegex = /\/news\/post\/(.*)/gmi
 const isPost = !!postPathRegex.exec(pathName)
 const isHome = pathName === '/'
 const isCategory = pathName.includes('/news/cat/')
+const isMusicOrder = pathName.includes('/music/order/')
 
 chrome.storage.sync.get(DEFAULT_EXT_CONFIG, opts => {
   chromeExtOptions = Object.assign({}, chromeExtOptions, opts)
@@ -289,6 +301,10 @@ chrome.storage.sync.get(DEFAULT_EXT_CONFIG, opts => {
       }
       sidebarOpened = !sidebarOpened
     })
+  }
+
+  if (isMusicOrder) {
+    blockBadWords()
   }
 
 
