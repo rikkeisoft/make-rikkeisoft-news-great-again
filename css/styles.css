@@ -92,6 +92,14 @@ a.emoji-button img {
 .block-more {
   display: none !important;
 }
+.toggle-sidebar {
+  top: 50%;
+  font-size: 36px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: #bf1d1e;
+}
 @media (min-width: 992px) {
   .force-show {
     display: block !important;

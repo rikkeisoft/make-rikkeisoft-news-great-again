@@ -1,15 +1,9 @@
 // Saves options to chrome.storage.sync.
 function saveOptions() {
-  // const useFixedHeader = document.getElementById('fixed-header').checked
-  // const shouldHideNewRibbon = document.getElementById('hide-new-ribbon').checked
-  // const shouldHideSidebar = document.getElementById('hide-sidebar').checked
   const useGallery = document.getElementById('use-gallery').checked
   const useHoverCard = document.getElementById('use-hover-card').checked
 
   chrome.storage.sync.set({
-    // useFixedHeader,
-    // shouldHideNewRibbon,
-    // shouldHideSidebar,
     useGallery,
     useHoverCard,
   }, () => {
@@ -26,15 +20,9 @@ function saveOptions() {
 // stored in chrome.storage.
 function restoreOptions() {
   chrome.storage.sync.get({
-    // useFixedHeader: true,
-    // shouldHideNewRibbon: true,
-    // shouldHideSidebar: true,
     useGallery: true,
     useHoverCard: true,
   }, items => {
-    // document.getElementById('fixed-header').checked = items.useFixedHeader
-    // document.getElementById('hide-new-ribbon').checked = items.shouldHideNewRibbon
-    // document.getElementById('hide-sidebar').checked = items.shouldHideSidebar
     document.getElementById('use-gallery').checked = items.useGallery
     document.getElementById('use-hover-card').checked = items.useHoverCard
   })
