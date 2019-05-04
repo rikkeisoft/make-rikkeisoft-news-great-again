@@ -13,15 +13,15 @@ class RKVN {
   static IS_SIDEBAR_OPENED = false
   static API_ENDPOINT = 'https://ext.huynq.net'
   static DATA_ENDPOINT = '/rikkei-vn-ext'
-  static UPDATE_ENDPOINt = '/fetch/update'
-  static MARKDOWN_CHEATSHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
+  static UPDATE_ENDPOINT = '/fetch/update'
+  static MARKDOWN_CHEAT_SHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
   static CONTACT_SEARCH_API = 'https://rikkei.vn/contact/list'
   static DEFAULT_AVATAR = 'https://rikkei.vn/common/images/noavatar.png'
   static DEFAULT_CONFIG = { useGallery: true, useHoverCard: true }
   static LAST_FOCUSED_EDITOR
 
   initialize() {
-    chrome.storage.sync.get(RKVN.DEFAULT_CONFIG, opts => {
+    chrome.storage.sync.get(RKVN.DEFAULT_CONFIG, (opts) => {
       RKVN.EXT_OPTS = opts
       RKVN.LAST_FOCUSED_EDITOR = document.querySelector('div.emoji-wysiwyg-editor')
       this.run()
@@ -51,19 +51,19 @@ class RKVN {
   }
 
   fetch = async (url) => {
-    const { json, response } = await fetch(url)
-      .then(response => {
-        if (response.status === 204) {
-          return { json: {}, response }
-        }
-        return response.json()
-          .then(json => ({ json, response }))
-          .catch(e => {
-            ex = e
-            ex.response = response
-            throw ex
-          })
-      })
+    const { json, response } = await fetch(url).then((response) => {
+      if (response.status === 204) {
+        return { json: {}, response }
+      }
+      return response
+        .json()
+        .then((json) => ({ json, response }))
+        .catch((e) => {
+          ex = e
+          ex.response = response
+          throw ex
+        })
+    })
     if (response.ok) {
       return json
     }
@@ -73,9 +73,9 @@ class RKVN {
   decorateMentions() {
     const mentionedUrls = []
     const commentUrls = document.querySelectorAll('.comment-container a')
-    const contactUrlRegex = /((http|https):\/\/rikkei\.vn\/contact\?s=(.*))/gmi
+    const contactUrlRegex = /((http|https):\/\/rikkei\.vn\/contact\?s=(.*))/gim
 
-    commentUrls.forEach(url => {
+    commentUrls.forEach((url) => {
       const matched = contactUrlRegex.exec(url)
       if (url.classList.length === 0 && !!matched) {
         const wrapper = document.createElement('div')
@@ -84,8 +84,8 @@ class RKVN {
         wrapper.appendChild(url)
 
         fetch(`${RKVN.CONTACT_SEARCH_API}?s=${matched[3]}&page=1`)
-          .then(response => response.json())
-          .then(json => {
+          .then((response) => response.json())
+          .then((json) => {
             if (Object.keys(RKVN.CACHED_TEAM_DATA).length === 0) {
               RKVN.CACHED_TEAM_DATA = json.team
             }
@@ -95,8 +95,18 @@ class RKVN {
             const profile = json.data[0]
             if (profile) {
               RKVN.CACHED_PROFILE[profile.email] = profile
-              const userTeam = profile.team.split(';').map(team => team.split('-').map(team => RKVN.CACHED_TEAM_DATA[team] && RKVN.CACHED_TEAM_DATA[team].name).join(' / ')).join(' & ')
-              const userAvatar = profile.avatar_url ? profile.avatar_url.replace('?sz=50', '') : RKVN.DEFAULT_AVATAR
+              const userTeam = profile.team
+                .split(';')
+                .map((team) =>
+                  team
+                    .split('-')
+                    .map((team) => RKVN.CACHED_TEAM_DATA[team] && RKVN.CACHED_TEAM_DATA[team].name)
+                    .join(' / '),
+                )
+                .join(' & ')
+              const userAvatar = profile.avatar_url
+                ? profile.avatar_url.replace('?sz=50', '')
+                : RKVN.DEFAULT_AVATAR
               const popoverContent = document.createElement('div')
               popoverContent.className = 'push popover__content'
 
@@ -118,14 +128,14 @@ class RKVN {
               wrapper.appendChild(popoverContent)
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(error)
           })
         mentionedUrls.push(url)
       }
     })
 
-    mentionedUrls.forEach(url => {
+    mentionedUrls.forEach((url) => {
       url.classList = 'mentioned-link'
     })
   }
@@ -142,7 +152,7 @@ class RKVN {
 
   mutationObserverCallback(mutationsList, observer) {
     const emojiButtonElements = document.querySelectorAll('.emoji-button')
-    emojiButtonElements.forEach(element => {
+    emojiButtonElements.forEach((element) => {
       element.addEventListener('click', () => {
         RKVN.LAST_FOCUSED_EDITOR = element.previousSibling
       })
@@ -173,7 +183,7 @@ class RKVN {
           const item = stickers[index]
           RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${index}`] = {
             text: ` ![${item.name} from https://bit.ly/rikkeisoft_news_ext](${item.url})`,
-            value: ` ![${item.name} from https://bit.ly/rikkeisoft_news_ext](${item.url})`
+            value: ` ![${item.name} from https://bit.ly/rikkeisoft_news_ext](${item.url})`,
           }
           const newNode = `<div class="custom-emoji" data-emo="hnq-custom-emo-${index}">
   <img src="${item.url}" alt="${item.name}">
@@ -190,9 +200,11 @@ class RKVN {
       const dataEmo = `[data-emo="hnq-custom-emo-${i}"]`
       const element = document.querySelector(dataEmo)
       if (element) {
-        element.addEventListener('click', function (event) {
-          RKVN.LAST_FOCUSED_EDITOR.innerText += RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${i}`].text
-          RKVN.LAST_FOCUSED_EDITOR.previousSibling.value += RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${i}`].value
+        element.addEventListener('click', function(event) {
+          RKVN.LAST_FOCUSED_EDITOR.innerText +=
+            RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${i}`].text
+          RKVN.LAST_FOCUSED_EDITOR.previousSibling.value +=
+            RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${i}`].value
         })
       }
     }
@@ -200,7 +212,7 @@ class RKVN {
 
   render({ data }) {
     const pathName = window.location.pathname
-    const postPathRegex = /\/news\/post\/(.*)/gmi
+    const postPathRegex = /\/news\/post\/(.*)/gim
     const isPost = !!postPathRegex.exec(pathName)
     const isHome = pathName === '/'
     const isCategory = pathName.includes('/news/cat/')
@@ -245,7 +257,9 @@ class RKVN {
       }
 
       if (commentHelpText) {
-        commentHelpText.innerHTML = `support <a href="${RKVN.MARKDOWN_CHEATSHEET}" target="_blank">markdown</a> syntax`
+        commentHelpText.innerHTML = `support <a href="${
+          RKVN.MARKDOWN_CHEAT_SHEET
+        }" target="_blank">markdown</a> syntax`
       }
 
       if (targetNode) {
@@ -271,10 +285,10 @@ class RKVN {
     let shouldFetch = false
     let data
 
-    if (!fetchedData || !lastFetched || ((currentTime - lastFetched) > cacheExpiration)) {
+    if (!fetchedData || !lastFetched || currentTime - lastFetched > cacheExpiration) {
       shouldFetch = true
     } else {
-      const { rkvnext } = await this.fetch(`${RKVN.API_ENDPOINT}${RKVN.UPDATE_ENDPOINt}`)
+      const { rkvnext } = await this.fetch(`${RKVN.API_ENDPOINT}${RKVN.UPDATE_ENDPOINT}`)
       if (rkvnext) {
         shouldFetch = true
       }
