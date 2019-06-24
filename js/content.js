@@ -206,6 +206,18 @@ class RKVN {
           emoListElement.innerHTML += newNode
         }
         emoListElement.innerHTML += oldEmoticonList
+
+        emojiMenuElement.querySelectorAll('img').forEach((element) => {
+          element.addEventListener('click', function(event) {
+            emojiMenuElement.style.display = 'none'
+          })
+        })
+
+        emojiMenuElement.addEventListener('mouseup', function(event) {
+          event.preventDefault()
+          event.stopPropagation()
+          return false
+        })
       }
     }
 
