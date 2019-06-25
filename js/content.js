@@ -313,14 +313,12 @@ class RKVN {
 
     if (!fetchedData || !lastFetched || currentTime - lastFetched > cacheExpiration) {
       shouldFetch = true
+    } else {
+      const { rkvnext } = await this.fetch(`${RKVN.API_ENDPOINT}${RKVN.UPDATE_ENDPOINT}`)
+      if (rkvnext) {
+        shouldFetch = true
+      }
     }
-    // TODO: Temporarily disable for better performance
-    // else {
-    //   const { rkvnext } = await this.fetch(`${RKVN.API_ENDPOINT}${RKVN.UPDATE_ENDPOINT}`)
-    //   if (rkvnext) {
-    //     shouldFetch = true
-    //   }
-    // }
 
     if (shouldFetch) {
       this.removeSavedData()
