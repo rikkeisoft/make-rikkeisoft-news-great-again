@@ -48,7 +48,7 @@ class RKVN {
         ? profile.avatar_url.replace('?sz=50', '')
         : RKVN.DEFAULT_AVATAR
       const popoverContent = document.createElement('div')
-      popoverContent.className = 'push popover__content'
+      popoverContent.className = 'push popover-content'
 
       const profileHTML = `
 <div class="profile">
@@ -72,7 +72,7 @@ class RKVN {
       const matched = contactUrlRegex.exec(url)
       if (url.classList.length === 0 && !!matched) {
         const wrapper = document.createElement('div')
-        wrapper.classList.add('popover__wrapper')
+        wrapper.classList.add('popover-wrapper')
         url.parentNode.insertBefore(wrapper, url)
         wrapper.appendChild(url)
 
