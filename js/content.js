@@ -48,6 +48,7 @@ class RKVN {
         ? profile.avatar_url.replace('?sz=50', '')
         : RKVN.DEFAULT_AVATAR
       const popoverContent = document.createElement('div')
+
       popoverContent.className = 'push popover-content'
 
       const profileHTML = `
@@ -208,12 +209,12 @@ class RKVN {
         emoListElement.innerHTML += oldEmoticonList
 
         emojiMenuElement.querySelectorAll('img').forEach((element) => {
-          element.addEventListener('click', function(event) {
+          element.addEventListener('click', (event) => {
             emojiMenuElement.style.display = 'none'
           })
         })
 
-        emojiMenuElement.addEventListener('mouseup', function(event) {
+        emojiMenuElement.addEventListener('mouseup', (event) => {
           event.preventDefault()
           event.stopPropagation()
           return false
@@ -226,7 +227,7 @@ class RKVN {
       const dataEmo = `[data-emo="hnq-custom-emo-${i}"]`
       const element = document.querySelector(dataEmo)
       if (element) {
-        element.addEventListener('click', function(event) {
+        element.addEventListener('click', (event) => {
           RKVN.LAST_FOCUSED_EDITOR.innerText +=
             RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${i}`].text
           RKVN.LAST_FOCUSED_EDITOR.previousSibling.value +=

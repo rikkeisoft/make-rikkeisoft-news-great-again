@@ -125,3 +125,9 @@ a.emoji-button img {
     width: 100% !important;
   }
 }
+.box-order .music-order input, .box-order .music-order textarea {
+  box-shadow: none !important;
+}
+#main-heaer-top .navbar-custom-menu .nav.navbar-nav li.menu-language > a.nav-link > span.text {
+  margin-right: 5px;
+}
