@@ -1,7 +1,3 @@
-// KANAHEI: https://api.imgur.com/3/album/f79MjOU/images
-// Mimi & Neko Set 1: https://api.imgur.com/3/album/awUWHKu/images
-// Mimi & Neko Set 2: https://api.imgur.com/3/album/67kZppj/images
-
 console.log('=> Make Rikkeisoft News Great Again - https://ext.huynq.net/')
 
 class RKVN {
