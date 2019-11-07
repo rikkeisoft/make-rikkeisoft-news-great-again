@@ -1,4 +1,4 @@
-console.log('=> Make Rikkeisoft News Great Again - https://ext.huynq.net/')
+console.log(`=> Make Rikkeisoft News Great Again ${chrome.runtime.getManifest().version} - https://ext.huynq.net/`)
 
 class RKVN {
   static EXT_OPTS = {}
@@ -157,13 +157,13 @@ class RKVN {
     return null
   }
 
-  blockBadWords() {
-    const elements = document.querySelectorAll('.box-music')
+  blockBadWords(selector) {
+    const elements = document.querySelectorAll(selector)
 
     for (let i = 0; i < elements.length; i++) {
       const node = elements[i]
       const nodeHTML = node.innerHTML
-      node.innerHTML = nodeHTML.replace(/(địt|Địt|đụ|Đụ|lồn|Lồn|buồi|Buồi|cặc|Cặc|dái|Dái|con mẹ|con Mẹ|Con Mẹ|đm|ĐM)/gmiu, 'ahihi')
+      node.innerHTML = nodeHTML.replace(/(địt|Địt|đụ|Đụ|lồn|Lồn|buồi|Buồi|cặc|Cặc|dái|Dái|con mẹ|con Mẹ|Con Mẹ|đm|ĐM|dm)/gmiu, 'ahihi')
     }
   }
 
@@ -187,7 +187,6 @@ class RKVN {
       if (emojiMenuElement) {
         emojiMenuElement.style.display = 'none'
         const emoListElement = emojiMenuElement.children[0]
-        const oldEmoticonList = emoListElement.innerHTML
         emoListElement.innerHTML = ''
 
         let i = 0
@@ -196,6 +195,7 @@ class RKVN {
           RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${index}`] = {
             text: ` ![${item.name} from https://bit.ly/rikkeisoft_news_ext](${item.url})`,
             value: ` ![${item.name} from https://bit.ly/rikkeisoft_news_ext](${item.url})`,
+            url: item.url
           }
           const newNode = `<div class="custom-emoji" data-emo="hnq-custom-emo-${index}">
   <img src="${item.url}" alt="${item.name}">
@@ -203,7 +203,10 @@ class RKVN {
 </div>`
           emoListElement.innerHTML += newNode
         }
-        emoListElement.innerHTML += oldEmoticonList
+
+        const stickerPreview = document.createElement('div')
+        stickerPreview.classList = 'sticker-preview'
+        emojiMenuElement.append(stickerPreview)
 
         emojiMenuElement.querySelectorAll('img').forEach((element) => {
           element.addEventListener('click', (event) => {
@@ -230,8 +233,24 @@ class RKVN {
           RKVN.LAST_FOCUSED_EDITOR.previousSibling.value +=
             RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${i}`].value
         })
+
+        element.addEventListener('mouseenter', (event) => {
+          const previewElement = document.querySelector('.sticker-preview')
+          if (previewElement) {
+            previewElement.style = 'display: block;'
+            previewElement.innerHTML = `<img src="${RKVN.STICKER_EVENT_VALUES[`hnq-custom-emo-${i}`].url}" style="width: 100%;height: 100%;">`
+          }
+        })
       }
     }
+
+    document.querySelector('.emoji-menu').addEventListener('mouseleave', (event) => {
+      const previewElement = document.querySelector('.sticker-preview')
+      if (previewElement) {
+        previewElement.style = 'display: none;'
+        previewElement.innerHTML = ''
+      }
+    })
   }
 
   render({ data }) {
@@ -268,7 +287,7 @@ class RKVN {
     }
 
     if (isMusicOrder) {
-      this.blockBadWords()
+      this.blockBadWords('.box-music')
     }
 
     if (isPost) {

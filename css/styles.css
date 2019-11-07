@@ -20,11 +20,24 @@
   margin: 0;
   padding: 2px;
 }
+.custom-emoji:hover {
+  border: 1px solid #b71c1d;
+}
 .custom-emoji img {
   width: 65px !important;
   height: 65px !important;
   vertical-align: middle !important;
   border: 0 none !important;
+}
+.sticker-preview {
+  display: none;
+  position: absolute;
+  left: -160px;
+  width: 150px;
+  height: 150px;
+  top: 20px;
+  border: 2px solid #ffffff;
+  overflow: hidden !important;
 }
 .area-comment img {
   width: fit-content !important;
