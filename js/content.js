@@ -262,8 +262,9 @@ class RKVN {
     const isMusicOrder = pathName.includes('/music/order/')
     const { stickers } = data
     const { useGallery, useHoverCard } = RKVN.EXT_OPTS
+    const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
 
-    if (isHome || isPost || isCategory) {
+    if (sidebarElement && (isHome || isPost || isCategory)) {
       const sidebarToggle = document.createElement('div')
       sidebarToggle.innerHTML = `
   <a href="#" class="toggle-sidebar">
@@ -273,7 +274,6 @@ class RKVN {
       document.body.append(sidebarToggle)
 
       sidebarToggle.addEventListener('click', () => {
-        const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
         const mainContent = document.querySelector('.blog-content')
         if (RKVN.IS_SIDEBAR_OPENED) {
           sidebarElement.classList.remove('force-show')
