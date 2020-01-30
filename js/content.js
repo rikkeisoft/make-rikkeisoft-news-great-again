@@ -1,4 +1,4 @@
-console.log(`=> Make Rikkeisoft News Great Again ${chrome.runtime.getManifest().version} - https://ext.huynq.net/`)
+console.log(`=> You found me 😂 - Make Rikkeisoft News Great Again ${chrome.runtime.getManifest().version} - https://ext.huynq.net/`)
 
 class RKVN {
   static EXT_OPTS = {}

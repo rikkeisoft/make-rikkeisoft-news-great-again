@@ -14,13 +14,12 @@ function saveOptions() {
       status.textContent = 'Options saved.'
       setTimeout(() => {
         status.textContent = ''
-      }, 750)
+      }, 1000)
     },
   )
 }
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
+// Restores select box and checkbox state using the preferences stored in chrome.storage.
 function restoreOptions() {
   chrome.storage.sync.get(
     {

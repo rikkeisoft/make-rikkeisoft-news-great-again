@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     } else if (details.reason == 'update') {
       console.info('Updated version: ' + currentVersion)
       chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
-        for (var i = 0; i < tabs.length; i++) {
+        for (let i = 0; i < tabs.length; i++) {
           chrome.tabs.sendMessage(tabs[i].id, {
             name: 'showPopupOnUpdated',
             version: currentVersion,
