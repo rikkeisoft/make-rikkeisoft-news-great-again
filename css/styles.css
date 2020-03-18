@@ -90,6 +90,9 @@ a.emoji-button img {
 .profile-content {
   min-height: unset !important;
 }
+.profile-content .heading-icon {
+  width: 15px;
+}
 .profile-text h4 {
   font-weight: 700;
   margin-bottom: 5px;

@@ -53,11 +53,11 @@ class RKVN {
   <div class="profile-content">
     <div class="profile-text">
       <h4>${profile.name}</h4>
-      <h5><i class="fa fa-envelope-o color-mail"></i>${profile.email}</h6>
-      <h5><i class="fa fa-user-o"></i>${profile.employee_code}</h6>
-      <h5><i class="fa fa-birthday-cake color-birth"></i>${profile.birthday || 'Hidden'}</h6>
-      <h5><i class="fa fa-skype"></i>${profile.skype || 'Not set'}</h6>
-      <h5><i class="fa fa-users color-team"></i>${userTeam}</h6>
+      <h5><i class="fa fa-envelope-o color-mail heading-icon"></i>${profile.email}</h6>
+      <h5><i class="fa fa-user-o heading-icon"></i>${profile.employee_code}</h6>
+      <h5><i class="fa fa-birthday-cake color-birth heading-icon"></i>${profile.birthday || 'Hidden'}</h6>
+      <h5><i class="fa fa-skype heading-icon"></i>${profile.skype || 'Not set'}</h6>
+      <h5><i class="fa fa-users color-team heading-icon"></i>${userTeam}</h6>
     </div>
   </div>
 </div>
