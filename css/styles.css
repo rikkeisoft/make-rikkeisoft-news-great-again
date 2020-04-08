@@ -82,6 +82,7 @@ a.emoji-button img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
 .profile-photo img {
   width: 150px !important;
@@ -95,7 +96,10 @@ a.emoji-button img {
 }
 .profile-text h4 {
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+.profile-text h5 {
+  margin-top: 7px;
 }
 .profile-text i {
   margin-right: 10px;

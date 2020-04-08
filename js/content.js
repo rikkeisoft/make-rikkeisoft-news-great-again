@@ -27,7 +27,7 @@ class RKVN {
 
   static decorateMentions = () => {
     const mentionedUrls = []
-    const commentUrls = document.querySelectorAll('.comment-container a')
+    const commentUrls = document.querySelectorAll('.content-comment a')
     const contactUrlRegex = /((http|https):\/\/rikkei\.vn\/contact\?s=(.*))/gim
 
     const renderProfileCard = (url = {}, profile = {}) => {
@@ -291,9 +291,9 @@ class RKVN {
     }
 
     if (isPost) {
-      const postContent = document.querySelector('.post-detail')
+      const postContent = document.querySelector('#content')
       const commentHelpText = document.querySelector('.info-comment')
-      const targetNode = document.querySelector('.comment-container')
+      const targetNode = document.querySelector('#list-comment')
 
       if (useGallery) {
         const gallery = new Viewer(postContent)
