@@ -27,7 +27,7 @@ class RKVN {
 
   static decorateMentions = () => {
     const mentionedUrls = []
-    const commentUrls = document.querySelectorAll('.content-comment a')
+    const commentUrls = document.querySelectorAll('.span-comment a')
     const contactUrlRegex = /((http|https):\/\/rikkei\.vn\/contact\?s=(.*))/gim
 
     const renderProfileCard = (url = {}, profile = {}) => {
