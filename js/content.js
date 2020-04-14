@@ -295,7 +295,7 @@ class RKVN {
       const commentHelpText = document.querySelector('.info-comment')
       const targetNode = document.querySelector('#list-comment')
 
-      if (useGallery) {
+      if (useGallery && postContent) {
         const gallery = new Viewer(postContent)
       }
 
