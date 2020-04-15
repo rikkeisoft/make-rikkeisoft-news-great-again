@@ -13,7 +13,7 @@ class RKVN {
   static MARKDOWN_CHEAT_SHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
   static CONTACT_SEARCH_API = 'https://rikkei.vn/contact/list'
   static DEFAULT_AVATAR = 'https://rikkei.vn/common/images/noavatar.png'
-  static DEFAULT_CONFIG = { useGallery: true, useHoverCard: true }
+  static DEFAULT_CONFIG = { useGallery: true, useHoverCard: true, hideMultimediaWidget: true }
   static LAST_FOCUSED_EDITOR
 
   static addEventToEmojis = () => {
@@ -261,8 +261,9 @@ class RKVN {
     const isCategory = pathName.includes('/news/cat/')
     const isMusicOrder = pathName.includes('/music/order/')
     const { stickers } = data
-    const { useGallery, useHoverCard } = RKVN.EXT_OPTS
+    const { useGallery, useHoverCard, hideMultimediaWidget } = RKVN.EXT_OPTS
     const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
+    const multimediaWidget = document.querySelector('.home-videos')
 
     if (sidebarElement && (isHome || isPost || isCategory)) {
       const sidebarToggle = document.createElement('div')
@@ -284,6 +285,10 @@ class RKVN {
         }
         RKVN.IS_SIDEBAR_OPENED = !RKVN.IS_SIDEBAR_OPENED
       })
+    }
+
+    if (multimediaWidget && hideMultimediaWidget) {
+      multimediaWidget.remove()
     }
 
     if (isMusicOrder) {

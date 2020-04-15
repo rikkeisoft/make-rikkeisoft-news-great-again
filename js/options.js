@@ -2,11 +2,13 @@
 function saveOptions() {
   const useGallery = document.getElementById('use-gallery').checked
   const useHoverCard = document.getElementById('use-hover-card').checked
+  const hideMultimediaWidget = document.getElementById('hide-multimedia-widget').checked
 
   chrome.storage.sync.set(
     {
       useGallery,
       useHoverCard,
+      hideMultimediaWidget,
     },
     () => {
       // Update status to let user know options were saved.
@@ -25,10 +27,12 @@ function restoreOptions() {
     {
       useGallery: true,
       useHoverCard: true,
+      hideMultimediaWidget: true,
     },
     (items) => {
       document.getElementById('use-gallery').checked = items.useGallery
       document.getElementById('use-hover-card').checked = items.useHoverCard
+      document.getElementById('hide-multimedia-widget').checked = items.hideMultimediaWidget
     },
   )
 }
