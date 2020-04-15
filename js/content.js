@@ -287,7 +287,7 @@ class RKVN {
       })
     }
 
-    if (videoPlayerElement && disableAutoplayVideo) {
+    if (videoPlayerElement && videoPlayerElement.src && disableAutoplayVideo) {
       videoPlayerElement.src = videoPlayerElement.src.replace('autoplay=1&', '')
     }
 
