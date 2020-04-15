@@ -96,6 +96,7 @@ a.emoji-button img {
 }
 .profile-text h4 {
   font-weight: 700;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 .profile-text h5 {

@@ -25,10 +25,16 @@ class RKVN {
     })
   }
 
-  static decorateMentions = () => {
+  static decorateMentions = (selector, isHome = false) => {
     const mentionedUrls = []
-    const commentUrls = document.querySelectorAll('.span-comment a')
-    const contactUrlRegex = /((http|https):\/\/rikkei\.vn\/contact\?s=(.*))/gim
+    const matchedMentions = document.querySelectorAll(selector)
+
+    let contactUrlRegex
+    if (isHome) {
+      contactUrlRegex = /((http|https):\/\/rikkei\.vn\/contact\?s=(.*))/im
+    } else {
+      contactUrlRegex = /((http|https):\/\/rikkei\.vn\/contact\?s=(.*))/gim
+    }
 
     const renderProfileCard = (url = {}, profile = {}) => {
       const userTeam = profile.team
@@ -66,16 +72,16 @@ class RKVN {
       return popoverContent
     }
 
-    commentUrls.forEach((url) => {
-      const matched = contactUrlRegex.exec(url)
-      if (url.classList.length === 0 && !!matched) {
+    matchedMentions.forEach((mentionElement) => {
+      const matched = contactUrlRegex.exec(mentionElement)
+      if (mentionElement.classList.length === 0 && !!matched) {
         const wrapper = document.createElement('div')
         wrapper.classList.add('popover-wrapper')
-        url.parentNode.insertBefore(wrapper, url)
-        wrapper.appendChild(url)
+        mentionElement.parentNode.insertBefore(wrapper, mentionElement)
+        wrapper.appendChild(mentionElement)
 
         if (RKVN.CACHED_PROFILE[matched[3]]) {
-          const profileCard = renderProfileCard(url, RKVN.CACHED_PROFILE[matched[3]])
+          const profileCard = renderProfileCard(mentionElement, RKVN.CACHED_PROFILE[matched[3]])
           wrapper.appendChild(profileCard)
         } else {
           fetch(`${RKVN.CONTACT_SEARCH_API}?s=${matched[3]}&page=1`)
@@ -90,7 +96,7 @@ class RKVN {
               const profile = json.data[0]
               if (profile) {
                 RKVN.CACHED_PROFILE[profile.email] = profile
-                const profileCard = renderProfileCard(url, profile)
+                const profileCard = renderProfileCard(mentionElement, profile)
                 wrapper.appendChild(profileCard)
               }
             })
@@ -98,7 +104,7 @@ class RKVN {
               console.error(error)
             })
         }
-        mentionedUrls.push(url)
+        mentionedUrls.push(mentionElement)
       }
     })
 
@@ -173,7 +179,7 @@ class RKVN {
     for (let mutation of mutationsList) {
       if (mutation.type == 'childList') {
         if (RKVN.EXT_OPTS.useHoverCard) {
-          RKVN.decorateMentions()
+          RKVN.decorateMentions('.span-comment a')
         }
       }
     }
@@ -316,10 +322,14 @@ class RKVN {
       this.blockBadWords('.box-music')
     }
 
+    if (isHome && RKVN.EXT_OPTS.useHoverCard) {
+      RKVN.decorateMentions('.top-members-item a', true)
+    }
+
     if (isPost) {
       const postContent = document.querySelector('#content')
       const commentHelpText = document.querySelector('.info-comment')
-      const targetNode = document.querySelector('#list-comment')
+      const listComments = document.querySelector('#list-comment')
 
       if (useGallery && postContent) {
         const gallery = new Viewer(postContent)
@@ -333,18 +343,18 @@ class RKVN {
 `
       }
 
-      if (targetNode) {
+      if (listComments) {
         RKVN.addEventToEmojis()
 
         if (useHoverCard) {
-          RKVN.decorateMentions()
+          RKVN.decorateMentions('.span-comment a')
         }
         this.addStickersToEmoList(stickers)
 
         const config = { childList: true, subtree: true }
         const observer = new MutationObserver(this.mutationObserverCallback)
-        if (targetNode) {
-          observer.observe(targetNode, config)
+        if (listComments) {
+          observer.observe(listComments, config)
         }
       }
     }
