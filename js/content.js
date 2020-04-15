@@ -263,7 +263,9 @@ class RKVN {
     const { stickers } = data
     const { useGallery, useHoverCard, disableAutoplayVideo } = RKVN.EXT_OPTS
     const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
-    const videoPlayerElement = document.querySelector('#js-primary-video')
+    const youtubePlayerElement = document.querySelector('.youtube-player')
+    const relatedVideoElements = document.querySelectorAll('.home-videos__content__right_item') || []
+    let videoPlayerIframe = document.querySelector('#js-primary-video')
 
     if (sidebarElement && (isHome || isPost || isCategory)) {
       const sidebarToggle = document.createElement('div')
@@ -287,8 +289,27 @@ class RKVN {
       })
     }
 
-    if (videoPlayerElement && videoPlayerElement.src && disableAutoplayVideo) {
-      videoPlayerElement.src = videoPlayerElement.src.replace('autoplay=1&', '')
+    if (disableAutoplayVideo) {
+      relatedVideoElements.forEach((element) => {
+        element.addEventListener('click', () => {
+          setTimeout(() => {
+            videoPlayerIframe = document.querySelector('#js-primary-video')
+            videoPlayerIframe.src = videoPlayerIframe.src.replace('autoplay=1&', '')
+            videoPlayerIframe.style.width = '100%'
+            videoPlayerIframe.style.height = '250px'
+          }, 250)
+        })
+      })
+
+      if (youtubePlayerElement && youtubePlayerElement.className) {
+        youtubePlayerElement.className = youtubePlayerElement.className.replace('youtube-player', 'youtube-player-free')
+      }
+
+      if (videoPlayerIframe && videoPlayerIframe.src) {
+        videoPlayerIframe.src = videoPlayerIframe.src.replace('autoplay=1&', '')
+        videoPlayerIframe.style.width = '100%'
+        videoPlayerIframe.style.height = '250px'
+      }
     }
 
     if (isMusicOrder) {

@@ -151,3 +151,10 @@ a.emoji-button img {
 #main-heaer-top .navbar-custom-menu .nav.navbar-nav li.menu-language > a.nav-link > span.text {
   margin-right: 5px;
 }
+.home-videos .youtube-player-free {
+  position: relative;
+  max-width: 100%;
+  margin: 0;
+  background: 0 0;
+  padding-bottom: unset;
+}
