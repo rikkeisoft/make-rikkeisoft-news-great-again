@@ -13,7 +13,7 @@ class RKVN {
   static MARKDOWN_CHEAT_SHEET = 'https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf'
   static CONTACT_SEARCH_API = 'https://rikkei.vn/contact/list'
   static DEFAULT_AVATAR = 'https://rikkei.vn/common/images/noavatar.png'
-  static DEFAULT_CONFIG = { useGallery: true, useHoverCard: true, hideMultimediaWidget: true }
+  static DEFAULT_CONFIG = { useGallery: true, useHoverCard: true, hideMultimediaWidget: false }
   static LAST_FOCUSED_EDITOR
 
   static addEventToEmojis = () => {

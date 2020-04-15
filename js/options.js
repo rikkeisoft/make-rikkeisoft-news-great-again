@@ -27,7 +27,7 @@ function restoreOptions() {
     {
       useGallery: true,
       useHoverCard: true,
-      hideMultimediaWidget: true,
+      hideMultimediaWidget: false,
     },
     (items) => {
       document.getElementById('use-gallery').checked = items.useGallery
