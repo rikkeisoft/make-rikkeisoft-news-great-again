@@ -2,13 +2,13 @@
 function saveOptions() {
   const useGallery = document.getElementById('use-gallery').checked
   const useHoverCard = document.getElementById('use-hover-card').checked
-  const hideMultimediaWidget = document.getElementById('hide-multimedia-widget').checked
+  const disableAutoplayVideo = document.getElementById('disable-autoplay-video').checked
 
   chrome.storage.sync.set(
     {
       useGallery,
       useHoverCard,
-      hideMultimediaWidget,
+      disableAutoplayVideo,
     },
     () => {
       // Update status to let user know options were saved.
@@ -27,12 +27,12 @@ function restoreOptions() {
     {
       useGallery: true,
       useHoverCard: true,
-      hideMultimediaWidget: false,
+      disableAutoplayVideo: false,
     },
     (items) => {
       document.getElementById('use-gallery').checked = items.useGallery
       document.getElementById('use-hover-card').checked = items.useHoverCard
-      document.getElementById('hide-multimedia-widget').checked = items.hideMultimediaWidget
+      document.getElementById('disable-autoplay-video').checked = items.disableAutoplayVideo
     },
   )
 }
