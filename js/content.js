@@ -269,7 +269,7 @@ class RKVN {
     const { stickers } = data
     const { useGallery, useHoverCard, disableAutoplayVideo } = RKVN.EXT_OPTS
     const sidebarElement = document.querySelector('.blog-sidebar-wrapper')
-    const youtubePlayerElement = document.querySelector('.youtube-player')
+    const youtubePlayerElement = document.querySelector('.youtube-player:not(.youtube-player-detail)')
     const relatedVideoElements = document.querySelectorAll('.home-videos__content__right_item') || []
     let videoPlayerIframe = document.querySelector('#js-primary-video')
 
