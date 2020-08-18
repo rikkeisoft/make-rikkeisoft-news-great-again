@@ -42,7 +42,13 @@ class RKVN {
         .map((team) =>
           team
             .split('-')
-            .map((team) => RKVN.CACHED_TEAM_DATA[team] && RKVN.CACHED_TEAM_DATA[team].name)
+            .map((item, index) => {
+              if (index === 0) {
+                return RKVN.CACHED_TEAM_DATA[item] && RKVN.CACHED_TEAM_DATA[item].name
+              } else {
+                return RKVN.CACHED_ROLE_DATA[item] && RKVN.CACHED_ROLE_DATA[item].role
+              }
+            })
             .join(' / '),
         )
         .join(' & ')
