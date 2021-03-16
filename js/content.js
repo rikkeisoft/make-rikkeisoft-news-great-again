@@ -193,6 +193,7 @@ class RKVN {
 
   addStickersToEmoList(stickers) {
     const emojiButtonElement = document.querySelector('.emoji-button')
+
     if (emojiButtonElement) {
       emojiButtonElement.click()
       const emojiMenuElement = document.querySelector('body > div.emoji-menu')
@@ -256,13 +257,16 @@ class RKVN {
       }
     }
 
-    document.querySelector('.emoji-menu').addEventListener('mouseleave', (event) => {
-      const previewElement = document.querySelector('.sticker-preview')
-      if (previewElement) {
-        previewElement.style = 'display: none;'
-        previewElement.innerHTML = ''
-      }
-    })
+    const emojiMenu = document.querySelector('.emoji-menu')
+    if (emojiMenu) {
+      emojiMenu.addEventListener('mouseleave', (event) => {
+        const previewElement = document.querySelector('.sticker-preview')
+        if (previewElement) {
+          previewElement.style = 'display: none;'
+          previewElement.innerHTML = ''
+        }
+      })
+    }
   }
 
   render({ data }) {
@@ -355,6 +359,7 @@ class RKVN {
         if (useHoverCard) {
           RKVN.decorateMentions('.span-comment a')
         }
+
         this.addStickersToEmoList(stickers)
 
         const config = { childList: true, subtree: true }
@@ -396,5 +401,7 @@ class RKVN {
   }
 }
 
-const rkvnExt = new RKVN()
-rkvnExt.initialize()
+window.addEventListener('load', () => {
+  const rkvnExt = new RKVN()
+  rkvnExt.initialize()
+})
