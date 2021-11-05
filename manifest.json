@@ -4,7 +4,7 @@
   "short_name": "Make Rikkeisoft News Great Again",
   "description": "Utilities for Rikkeisoft News.",
   "homepage_url": "https://ext.huynq.net/",
-  "version": "0.9.3.7",
+  "version": "0.9.3.8",
   "browser_action": {
     "default_icon": "img/icon64.png",
     "default_title": "Make Rikkeisoft Great Again",
@@ -19,7 +19,8 @@
     {
       "matches": [
         "*://rikkei.vn/*",
-        "*://*.rikkei.vn/*"
+        "*://*.rikkei.vn/*",
+        "*://10namcungnhau.rikkeisoft.com/cung-ke-lai/*"
       ],
       "css": [
         "css/viewer.min.css",
@@ -45,6 +46,7 @@
   "permissions": [
     "*://rikkei.vn/*",
     "*://*.rikkei.vn/*",
+    "*://10namcungnhau.rikkeisoft.com/cung-ke-lai/*",
     "storage"
   ]
 }

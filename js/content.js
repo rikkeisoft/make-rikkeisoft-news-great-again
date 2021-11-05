@@ -272,7 +272,9 @@ class RKVN {
   render({ data }) {
     const pathName = window.location.pathname
     const postPathRegex = /\/news\/post\/(.*)/gim
+    const cungKeLaiRegex = /\/cung-ke-lai\/(\d+)\/(.*)/gim
     const isPost = !!postPathRegex.exec(pathName)
+    const isCungKeLaiPost = !!cungKeLaiRegex.exec(pathName)
     const isHome = pathName === '/'
     const isCategory = pathName.includes('/news/cat/')
     const isMusicOrder = pathName.includes('/music/order/')
@@ -336,7 +338,7 @@ class RKVN {
       RKVN.decorateMentions('.top-members-item a', true)
     }
 
-    if (isPost) {
+    if (isPost || isCungKeLaiPost) {
       const postContent = document.querySelector('#content')
       const commentHelpText = document.querySelector('.info-comment')
       const listComments = document.querySelector('#list-comment')
