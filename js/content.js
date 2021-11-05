@@ -61,7 +61,7 @@ class RKVN {
 
       const profileHTML = `
 <div class="profile">
-  <div class="profile-photo"><a href="${url.href}" target="_blank"><img src="${userAvatar}" /></a></div>
+  <div class="profile-photo"><img src="${userAvatar}" /></div>
   <div class="profile-content">
     <div class="profile-text">
       <h4>${profile.name}</h4>
